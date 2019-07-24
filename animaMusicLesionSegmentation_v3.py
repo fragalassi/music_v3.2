@@ -27,8 +27,8 @@ animaExtraDataDir = configParser.get("anima-scripts",'extra-data-root')
 sys.path.append(animaScriptsDir)
 
 import animaMusicLesionAdditionalPreprocessing_v3 as preproc
-#import animaMusicLesionCoreProcessing_v3 as coreproc
-#import animaMusicLesionPostProcessing_v3 as postproc
+import animaMusicLesionCoreProcessing_v3 as coreproc
+import animaMusicLesionPostProcessing_v3 as postproc
 
 #tmpFolder = tempfile.mkdtemp()
 
@@ -68,37 +68,38 @@ if not(os.path.isfile(maskImage)):
 #    os.makedirs(tmpFolder)
 tmpFolder=outputFolder
     
-# First perform additional preprocessing
-print('Starting additional preprocessing of data')
-preproc.music_lesion_additional_preprocessing(animaDir, animaExtraDataDir, tmpFolder, t1Image, flairImage, 
-                                              maskImage, nbThreads)                                              
-## Then run core process over up images
-#print('Done with additional preprocessing, starting core processing of data')
-#animaExtraDataDir='/temp_dd/igrida-fs1/fgalassi/MUSIC_rev2/'
-#modelName = "t1_flair_1608_ce_noNorm_upsampleAnima_rev1"
-#if not(os.path.isdir(os.path.join(tmpFolder, modelName))):
-#    os.makedirs(os.path.join(tmpFolder, modelName))
-#t1Image = os.path.join(tmpFolder, "T1_masked-upsampleAnima.nii.gz")
-#flairImage = os.path.join(tmpFolder, "FLAIR_masked-upsampleAnima.nii.gz")    
-#coreproc.music_lesion_core_processing(animaExtraDataDir, t1Image, flairImage, modelName, tmpFolder)
-#
-## Now run post-processing
-#print('Done with core processing, starting post processing of data')
-#
-#maskImage = os.path.join(tmpFolder, "mask-er.nrrd")
-#atlasWMImage = os.path.join(tmpFolder, "ATLAS-wm_masked-reg.nrrd")
-#atlasGMImage = os.path.join(tmpFolder, "ATLAS-gm_masked-reg.nrrd")
-#atlasCSFImage = os.path.join(tmpFolder, "ATLAS-csf_masked-reg.nrrd")
-#flairImage = args.flair
-#cnnImage = os.path.join(tmpFolder, modelName, modelName + "_prob_1.nii.gz")
-#
-#outputImage = os.path.join(tmpFolder, modelName, modelName + "_segm.nii.gz")
-#postproc.music_lesion_post_processing(animaDir, animaExtraDataDir, tmpFolder, outputImage, cnnImage, flairImage,
-#                                      atlasWMImage, atlasGMImage, atlasCSFImage, maskImage, nbThreads)
+#--------------------------------------- First perform additional preprocessing
+#print('Starting additional preprocessing of data')
+#preproc.music_lesion_additional_preprocessing(animaDir, animaExtraDataDir, tmpFolder, t1Image, flairImage, 
+#                                              maskImage, nbThreads)                  
+                            
+#----------------------------------------- Then run core process over up images
+print('Done with additional preprocessing, starting core processing of data')
+animaExtraDataDir='/temp_dd/igrida-fs1/fgalassi/music_v3.2'
+modelName = "t1_flair_1608_ce_noNorm_upsampleAnima_rev1"
+if not(os.path.isdir(os.path.join(tmpFolder, modelName))):
+    os.makedirs(os.path.join(tmpFolder, modelName))
+t1Image = os.path.join(tmpFolder, "T1_masked-upsampleAnima.nii.gz")
+flairImage = os.path.join(tmpFolder, "FLAIR_masked-upsampleAnima.nii.gz")    
+coreproc.music_lesion_core_processing(animaExtraDataDir, t1Image, flairImage, modelName, tmpFolder)
+
+#------------------------------------------------------ Now run post-processing
+print('Done with core processing, starting post processing of data')
+
+maskImage = os.path.join(tmpFolder, "mask-er.nrrd")
+atlasWMImage = os.path.join(tmpFolder, "ATLAS-wm_masked-reg.nrrd")
+atlasGMImage = os.path.join(tmpFolder, "ATLAS-gm_masked-reg.nrrd")
+atlasCSFImage = os.path.join(tmpFolder, "ATLAS-csf_masked-reg.nrrd")
+flairImage = args.flair
+cnnImage = os.path.join(tmpFolder, modelName, modelName + "_prob_1.nii.gz")
+
+outputImage = os.path.join(tmpFolder, modelName, modelName + "_segm.nii.gz")
+postproc.music_lesion_post_processing(animaDir, animaExtraDataDir, tmpFolder, outputImage, cnnImage, flairImage,
+                                      atlasWMImage, atlasGMImage, atlasCSFImage, maskImage, nbThreads)
                                     
-## Evaluate segm performance
-#SEGPERF="/udd/fgalassi/dev/SegPerfAnalyzer_build/SegPerfAnalyzer-build/SegPerfAnalyzer"
-#command=[SEGPERF, "-r",  os.path.join(tmpFolder, "Consensus.nii.gz"), "-i", outputImage, "-o", os.path.join(tmpFolder, modelName, modelName + "_segm_perf"),"-s", "-l"]
-#call(command)
+#---------------------------------------------------- Evaluate segm performance
+SEGPERF="/udd/fgalassi/dev/SegPerfAnalyzer_build/SegPerfAnalyzer-build/SegPerfAnalyzer"
+command=[SEGPERF, "-r",  os.path.join(tmpFolder, "Consensus.nii.gz"), "-i", outputImage, "-o", os.path.join(tmpFolder, modelName, modelName + "_segm_perf"),"-s", "-l"]
+call(command)
     
 #shutil.rmtree(tmpFolder)

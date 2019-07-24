@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SCRIPTDIR=/temp_dd/igrida-fs1/fgalassi/MUSIC_rev2/MUSIC_v3
+SCRIPTDIR=/temp_dd/igrida-fs1/fgalassi/music_v3.2
 echo "$SCRIPTDIR"
 
 chmod +x $SCRIPTDIR/bypass_preprocessing_v3.sh

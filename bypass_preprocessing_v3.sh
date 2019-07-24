@@ -1,11 +1,11 @@
 #!/bin/bash
-SCRIPTDIR=/temp_dd/igrida-fs1/fgalassi/MUSIC_rev2/MUSIC_v3
+SCRIPTDIR=/temp_dd/igrida-fs1/fgalassi/music_v3.2
 echo "$SCRIPTDIR"
 
-DATADIR=/temp_dd/igrida-fs1/fgalassi/training
+#DATADIR=/temp_dd/igrida-fs1/fgalassi/training
 #DATADIR=/temp_dd/igrida-fs1/fgalassi/UNC_train_Part1
 #DATADIR=/temp_dd/igrida-fs1/fgalassi/export-music
-#DATADIR=/temp_dd/igrida-fs1/fgalassi/testing
+DATADIR=/temp_dd/igrida-fs1/fgalassi/testing_FG_rev2
 #DATADIR=/temp_dd/igrida-fs1/fgalassi/brainM24/set1
 #DATADIR=/temp_dd/igrida-fs1/fgalassi/brainM24/set2_includingSomeM0
 
