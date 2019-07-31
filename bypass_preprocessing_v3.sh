@@ -32,7 +32,6 @@ for patient in $DATADIR/*; do
 	#training/testing MICCAI16
 	FLAIR=$DATADIR/"$patientID"/3DFLAIR.nii.gz
 	T1=$DATADIR/"$patientID"/3DT1.nii.gz
-	T1gd=$DATADIR/"$patientID"/3DT1GADO.nii.gz
 
 	#export-music 2019
 	FLAIR=$DATADIR/"$patientID"/flair.nrrd
