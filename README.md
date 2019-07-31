@@ -1,6 +1,8 @@
-# music_v2
+# music_v3.2
 
-MS segmentation algorithm based on CNNs
+MS segmentation algorithm based on CNNs;
+
+Latest version within the project Music (Rennes CHU, France)
 
 ## Getting Started
 
