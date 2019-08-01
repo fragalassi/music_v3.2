@@ -75,7 +75,6 @@ tmpFolder=outputFolder
                             
 #----------------------------------------- Then run core process over up images
 print('Done with additional preprocessing, starting core processing of data')
-animaExtraDataDir='/temp_dd/igrida-fs1/fgalassi/music_v3.2'
 modelName = "t1_flair_1608_ce_noNorm_upsampleAnima_rev1"
 if not(os.path.isdir(os.path.join(tmpFolder, modelName))):
     os.makedirs(os.path.join(tmpFolder, modelName))
@@ -97,9 +96,9 @@ outputImage = os.path.join(tmpFolder, modelName, modelName + "_segm.nii.gz")
 postproc.music_lesion_post_processing(animaDir, animaExtraDataDir, tmpFolder, outputImage, cnnImage, flairImage,
                                       atlasWMImage, atlasGMImage, atlasCSFImage, maskImage, nbThreads)
                                     
-#---------------------------------------------------- Evaluate segm performance
-SEGPERF="/udd/fgalassi/dev/SegPerfAnalyzer_build/SegPerfAnalyzer-build/SegPerfAnalyzer"
-command=[SEGPERF, "-r",  os.path.join(tmpFolder, "Consensus.nii.gz"), "-i", outputImage, "-o", os.path.join(tmpFolder, modelName, modelName + "_segm_perf"),"-s", "-l"]
-call(command)
-    
+##---------------------------------------------------- Evaluate segm performance
+#SEGPERF="/udd/fgalassi/dev/SegPerfAnalyzer_build/SegPerfAnalyzer-build/SegPerfAnalyzer"
+#command=[SEGPERF, "-r",  os.path.join(tmpFolder, "Consensus.nii.gz"), "-i", outputImage, "-o", os.path.join(tmpFolder, modelName, modelName + "_segm_perf"),"-s", "-l"]
+#call(command)
+#    
 #shutil.rmtree(tmpFolder)
