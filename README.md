@@ -1,31 +1,14 @@
 # music_v3.2
 
-MS segmentation algorithm based on CNNs;
+MS segmentation algorithm based on CNNs. It uses FLAIR and T1 modalities. It needs GPU.
 
-Latest version within the project Music (Rennes CHU, France)
+You can use the pipeline directly to segment your data, since trained models are provided. They were trained on MICCAI 2016 and MICCAI 2008 training datasets, both openly available. 
+
+If you want to re-train a model, then refer to the files with the *training addendum.
 
 ## Getting Started
 
-You can run the pipeline using a Docker:
+The easiest way to set-up and use this pipeline is via Docker: follow the README.md file in the repository Docker_music_v2_v3.2.
 
--	Instructions to set up docker : 
-https://docs.docker.com/install/linux/docker-ce/ubuntu/
-
--	Then follow the instructions in the Docker README.md 
-
-
-## Authors
-
-Please cite:
-
-F. Galassi, S. Tarride, E. Vallée, O. Commowick, C. Barillot. Deep learning for multi-site ms lesions segmentation: two-step intensity standardization and generalized loss function. ISBI 2019 - IEEE International Symposium on Biomedical Imaging, Apr 2019, VENICE,Italy. pp.1. Francesca Galassi, Solène Tarride, Emmanuel Vallée, Olivier Commowick, Christian Barillot. Deep learning for multi-site ms lesions segmentation: two-step intensity standardization and generalized loss function. ISBI 2019 - IEEE International Symposium on Biomedical Imaging, Apr 2019, VENICE, Italy. pp.1. ⟨hal-02052250⟩
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* The cascaded CNN architecture employed in this pipeline was proposed by https://github.com/sergivalverde/nicMSlesions. We thank you the main author S. Valverde for the positive and helpful discussions. 
 
 
