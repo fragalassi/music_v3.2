@@ -69,9 +69,9 @@ if not(os.path.isfile(maskImage)):
 tmpFolder=outputFolder
     
 #--------------------------------------- First perform additional preprocessing
-#print('Starting additional preprocessing of data')
-#preproc.music_lesion_additional_preprocessing(animaDir, animaExtraDataDir, tmpFolder, t1Image, flairImage, 
-#                                              maskImage, nbThreads)                  
+print('Starting additional preprocessing of data')
+preproc.music_lesion_additional_preprocessing(animaDir, animaExtraDataDir, tmpFolder, t1Image, flairImage, 
+                                              maskImage, nbThreads)                  
                             
 #----------------------------------------- Then run core process over up images
 print('Done with additional preprocessing, starting core processing of data')
