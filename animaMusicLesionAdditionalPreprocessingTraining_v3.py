@@ -99,7 +99,8 @@ def music_lesion_additional_preprocessing(animaDir,animaExtraDataDir,tmpFolder,t
     call(command)
     command=[animaMaskImage, "-i", t1Image, "-m", os.path.join(tmpFolder,"mask-er.nrrd"), "-o", os.path.join(tmpFolder, "T1_masked.nrrd")]
     call(command)
-    
+    command=[animaMaskImage, "-i", cImage, "-m", os.path.join(tmpFolder,"mask-er.nrrd"), "-o", os.path.join(tmpFolder, "Consensus_masked.nrrd")]
+    call(command)
 #    # normalize k-means
 #    command=[animaKMeansStandardization, "-r", os.path.join(tmpFolder, "FLAIR_1_reg_masked.nrrd"), "-m", os.path.join(tmpFolder, "FLAIR_masked.nrrd"),
 #             "-R", os.path.join(tmpFolder,"mask-er.nrrd"), "-M", os.path.join(tmpFolder,"mask-er.nrrd"),
@@ -127,7 +128,7 @@ def music_lesion_additional_preprocessing(animaDir,animaExtraDataDir,tmpFolder,t
     command = [animaApplyTransformSerie, "-i", os.path.join(tmpFolder,"T1_masked.nrrd"), "-g", os.path.join(tmpFolder,"FLAIR_masked-upsampleAnima.nii.gz"),
                "-t",os.path.join(tmpFolder,"id.xml"),"-o",os.path.join(tmpFolder,"T1_masked-upsampleAnima.nii.gz")]
     call(command)
-    
+        
     # Lesion
     command = [animaApplyTransformSerie, "-i", cImage, "-g", os.path.join(tmpFolder,"FLAIR_masked-upsampleAnima.nii.gz"),
                    "-t",os.path.join(tmpFolder,"id.xml"),"-o",os.path.join(tmpFolder,"Consensus-upsampleAnima.nii.gz"),"-n", "nearest"]
