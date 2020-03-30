@@ -2,7 +2,7 @@ import os
 from CNN_training_tools.build_model import cascade_model
 from CNN_training_tools.base import train_cascaded_model
 
-def music_lesion_train_model(animaExtraDataDir, train_subjects, t1Image, flairImage, cImage, modelName):
+def music_lesion_train_model(animaExtraDataDir, train_subjects, t1Image, t2Image, flairImage, cImage, modelName):
     
     options = {}
     
@@ -31,8 +31,8 @@ def music_lesion_train_model(animaExtraDataDir, train_subjects, t1Image, flairIm
     options['train_folder'] = train_subjects
     options['weight_paths'] = animaExtraDataDir
     options['experiment'] = modelName
-    options['modalities'] = ['T1','FLAIR']
-    options['x_names'] = [t1Image, flairImage]
+    options['modalities'] = ['T1','T2','FLAIR']
+    options['x_names'] = [t1Image, t2Image, flairImage]
     options['y_names'] = [cImage]
 
     list_of_scans = os.listdir(options['train_folder'])
@@ -65,8 +65,9 @@ animaExtraDataDir='/temp_dd/igrida-fs1/fgalassi/MUSIC_rev2/'
 
 modelName = 't1_flair_1608_ce_noNorm_upsampleAnima_rev1'
 t1Image = 'T1_masked-upsampleAnima.nii.gz'
+t2Image = 'T2_masked-upsampleAnima.nii.gz'
 flairImage = 'FLAIR_masked-upsampleAnima.nii.gz'
 cImage = 'Consensus-upsampleAnima.nii.gz'
 
 print(modelName)
-music_lesion_train_model(animaExtraDataDir, train_subjects, t1Image, flairImage, cImage, modelName)
+music_lesion_train_model(animaExtraDataDir, train_subjects, t1Image, t2Image, flairImage, cImage, modelName)

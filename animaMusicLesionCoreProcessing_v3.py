@@ -3,7 +3,7 @@ from keras.models import load_model
 from CNN_training_tools.base import test_scan
 from CNN_training_tools.metrics import generalised_dice_loss, jaccard_distance_loss
 
-def music_lesion_core_processing(animaExtraDataDir,t1Image,flairImage,modelName,tmpFolder):
+def music_lesion_core_processing(animaExtraDataDir,t1Image,t2Image,flairImage,modelName,tmpFolder):
                      
     custom_objects = {'generalised_dice_loss': generalised_dice_loss, 'jaccard_distance_loss': jaccard_distance_loss}
 
@@ -36,6 +36,7 @@ def music_lesion_core_processing(animaExtraDataDir,t1Image,flairImage,modelName,
     test_data = dict()
     test_data['Patient'] = dict()
     test_data['Patient']['T1'] = t1Image
+    test_data['Patient']['T2'] = t2Image
     test_data['Patient']['FLAIR'] = flairImage
 
     # First layer of CNN
