@@ -104,7 +104,7 @@ for i in range(0, len(listImages)):
     nlmCommand = [animaNLMeans, "-i", unbiasedSecondImage, "-o", nlmSecondImage, "-n", "3"]
     call(nlmCommand)
 
-    outputPreprocessedFile = inputPrefix + "_preprocessed.nrrd"
+    outputPreprocessedFile = os.path.join(tmpFolder, inputPrefix + "_preprocessed.nrrd")
     secondMaskCommand = [animaMaskImage, "-i", nlmSecondImage, "-m", brainMask, "-o", outputPreprocessedFile]
     call(secondMaskCommand)
 
