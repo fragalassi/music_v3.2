@@ -63,7 +63,7 @@ with open(dataFile, 'r', encoding='utf-8') as f:
             print("  Preprocess...")
             preprocessingCommand = "python3 animaMSExamPreparation.py -r " + flair + " -f " + flair + " --t1 " + t1 + " --t2 " + t2 + " -o " + output
             preprocessingProcess = subprocess.Popen(preprocessingCommand, stdout=subprocess.PIPE, shell=True)
-            preprocessingProcessStatus = preprocessingProcess.wait()
+            preprocessingProcessStatus = preprocessingProcess.communicate()
 
             flair = os.path.join(output, os.path.basename(flair)[:-len(fileExtension)] + fileExtension)
             t1 = os.path.join(output, os.path.basename(t1)[:-len(fileExtension)] + fileExtension)
@@ -77,11 +77,11 @@ with open(dataFile, 'r', encoding='utf-8') as f:
         additionalParameters = " -p true -c " + label if train else ""
         segmentationCommand = "python3 animaMusicLesionSegmentation_v3.py -f " + flair + " --t1 " + t1 + " --t2 " + t2 + " -m " + mask + " -n " + nbThreads + additionalParameters + " -o " + output
         segmentationProcess = subprocess.Popen(segmentationCommand, stdout=subprocess.PIPE, shell=True)
-        segmentationProcessStatus = segmentationProcess.wait()
+        segmentationProcessStatus = segmentationProcess.communicate()
 
     # Train the model (if necessary)
     if train:
         print("Train...")
         trainingCommand = "PTHONHASHSEED=0 python3 animaMusicLesionTrainModel_v3.py -i " + outputDirectory
         trainingProcess = subprocess.Popen(trainingCommand, stdout=subprocess.PIPE, shell=True)
-        trainingProcessStatus = trainingProcess.wait()
+        trainingProcessStatus = trainingProcess.communicate()
