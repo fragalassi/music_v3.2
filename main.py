@@ -44,19 +44,23 @@ with open(dataFile, 'r', encoding='utf-8') as f:
     json_dict = json.load(f)
 
     fileExtension = json_dict['file-extension']
+    outputDirectory = json_dict['output-directory']
 
     # For all patient in the target dataset (training set or testing set)
     for patient in json_dict[dataName]:
+
+        output = patient['output']
+        pathlib.Path(output).mkdir(parents=True, exist_ok=True) 
+
+        print("Patient: " + output.replace(outputDirectory, '', 1))
 
         flair = patient['flair']
         t1 = patient['t1']
         t2 = patient['t2']
 
-        output = patient['output']
-        pathlib.Path(output).mkdir(parents=True, exist_ok=True) 
-
         # Preprocess the data (if necessary)
         if preprocessData:
+            print("  Preprocess...")
             preprocessingCommand = "python3 animaMSExamPreparation.py -r " + flair + " -f " + flair + " --t1 " + t1 + " --t2 " + t2 + " -o " + output
             preprocessingProcess = subprocess.Popen(preprocessingCommand, stdout=subprocess.PIPE, shell=True)
             preprocessingProcessStatus = preprocessingProcess.wait()
@@ -68,6 +72,7 @@ with open(dataFile, 'r', encoding='utf-8') as f:
         mask = patient['mask']
         label = patient['label']
 
+        print("  Process...")
         # Compute the segmentation
         additionalParameters = " -p true -c " + label if train else ""
         segmentationCommand = "python3 animaMusicLesionSegmentation_v3.py -f " + flair + " --t1 " + t1 + " --t2 " + t2 + " -m " + mask + " -n " + nbThreads + additionalParameters + " -o " + output
@@ -76,8 +81,7 @@ with open(dataFile, 'r', encoding='utf-8') as f:
 
     # Train the model (if necessary)
     if train:
-        trainDirectory = json_dict['output-directory']
-
-        trainingCommand = "PTHONHASHSEED=0 python3 animaMusicLesionTrainModel_v3.py -i " + trainDirectory
+        print("Train...")
+        trainingCommand = "PTHONHASHSEED=0 python3 animaMusicLesionTrainModel_v3.py -i " + outputDirectory
         trainingProcess = subprocess.Popen(trainingCommand, stdout=subprocess.PIPE, shell=True)
         trainingProcessStatus = trainingProcess.wait()

@@ -91,6 +91,7 @@ for i in range(0, len(listImages)):
     if os.path.splitext(listImages[i])[1] == '.gz':
         inputPrefix = os.path.splitext(inputPrefix)[0]
 
+    print('   ' + inputPrefix)
     registeredDataFile = os.path.join(tmpFolder, "SecondImage_registered.nrrd")
     rigidRegistrationCommand = [animaPyramidalBMRegistration, "-r", refImage, "-m", listImages[i], "-o",
                                 registeredDataFile] + pyramidOptions
