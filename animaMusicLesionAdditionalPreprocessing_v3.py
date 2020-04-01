@@ -129,44 +129,44 @@ def music_lesion_additional_preprocessing(animaDir,animaExtraDataDir,tmpFolder,t
 #    call(command)
     # normalize nyul
     command=[animaNyulStandardization, "-r", os.path.join(tmpFolder, "FLAIR_1_reg_masked.nrrd"), "-m", os.path.join(tmpFolder, "FLAIR_masked.nrrd"),
-             "-o", os.path.join(tmpFolder, "FLAIR-normed_nyul.nrrd")]
+             "-o", os.path.join(tmpFolder, "FLAIR_masked_normed_nyul.nrrd")]
     call(command)
     command=[animaNyulStandardization, "-r", os.path.join(tmpFolder, "T1_1_reg_masked.nrrd"), "-m", os.path.join(tmpFolder, "T1_masked.nrrd"),
-             "-o", os.path.join(tmpFolder, "T1-normed_nyul.nrrd")]
+             "-o", os.path.join(tmpFolder, "T1_masked_normed_nyul.nrrd")]
     call(command)
     command=[animaNyulStandardization, "-r", os.path.join(tmpFolder, "T2_1_reg_masked.nrrd"), "-m", os.path.join(tmpFolder, "T2_masked.nrrd"),
-             "-o", os.path.join(tmpFolder, "T2-normed_nyul.nrrd")]
+             "-o", os.path.join(tmpFolder, "T2_masked_normed_nyul.nrrd")]
     call(command)
          
          
     # Resample not norm images to get 1x1x1 mm3 images
-    command = [animaImageResolutionChanger, "-i", os.path.join(tmpFolder,"FLAIR_masked.nrrd"), "-o", os.path.join(tmpFolder,"FLAIR_masked-upsampleAnima.nii.gz"),
+    command = [animaImageResolutionChanger, "-i", os.path.join(tmpFolder,"FLAIR_masked.nrrd"), "-o", os.path.join(tmpFolder,"FLAIR_masked_upsampleAnima.nii.gz"),
                "-x","1","-y","1","-z","1"]
     call(command)
     command = [animaTransformSerieXmlGenerator,"-i",os.path.join(animaExtraDataDir,"id.txt"),"-o",os.path.join(tmpFolder,"id.xml")]
     call(command)
-    command = [animaApplyTransformSerie, "-i", os.path.join(tmpFolder,"T1_masked.nrrd"), "-g", os.path.join(tmpFolder,"FLAIR_masked-upsampleAnima.nii.gz"),
-               "-t",os.path.join(tmpFolder,"id.xml"),"-o",os.path.join(tmpFolder,"T1_masked-upsampleAnima.nii.gz")]
+    command = [animaApplyTransformSerie, "-i", os.path.join(tmpFolder,"T1_masked.nrrd"), "-g", os.path.join(tmpFolder,"FLAIR_masked_upsampleAnima.nii.gz"),
+               "-t",os.path.join(tmpFolder,"id.xml"),"-o",os.path.join(tmpFolder,"T1_masked_upsampleAnima.nii.gz")]
     call(command)
-    command = [animaApplyTransformSerie, "-i", os.path.join(tmpFolder,"T2_masked.nrrd"), "-g", os.path.join(tmpFolder,"FLAIR_masked-upsampleAnima.nii.gz"),
-               "-t",os.path.join(tmpFolder,"id.xml"),"-o",os.path.join(tmpFolder,"T2_masked-upsampleAnima.nii.gz")]
+    command = [animaApplyTransformSerie, "-i", os.path.join(tmpFolder,"T2_masked.nrrd"), "-g", os.path.join(tmpFolder,"FLAIR_masked_upsampleAnima.nii.gz"),
+               "-t",os.path.join(tmpFolder,"id.xml"),"-o",os.path.join(tmpFolder,"T2_masked_upsampleAnima.nii.gz")]
     call(command)
     
     if cImage:
         # Lesion
-        command = [animaApplyTransformSerie, "-i", cImage, "-g", os.path.join(tmpFolder,"FLAIR_masked-upsampleAnima.nii.gz"),
-                    "-t",os.path.join(tmpFolder,"id.xml"),"-o",os.path.join(tmpFolder,"Consensus-upsampleAnima.nii.gz"),"-n", "nearest"]
+        command = [animaApplyTransformSerie, "-i", cImage, "-g", os.path.join(tmpFolder,"FLAIR_masked_upsampleAnima.nii.gz"),
+                    "-t",os.path.join(tmpFolder,"id.xml"),"-o",os.path.join(tmpFolder,"Consensus_upsampleAnima.nii.gz"),"-n", "nearest"]
         call(command)
 
     # Resample norm images to get 1x1x1 mm3 images
-    command = [animaImageResolutionChanger, "-i", os.path.join(tmpFolder,"FLAIR-normed_nyul.nrrd"), "-o", os.path.join(tmpFolder,"FLAIR-normed_nyul-upsampleAnima.nii.gz"),
+    command = [animaImageResolutionChanger, "-i", os.path.join(tmpFolder,"FLAIR_masked_normed_nyul.nrrd"), "-o", os.path.join(tmpFolder,"FLAIR_masked_normed_nyul_upsampleAnima.nii.gz"),
                "-x","1","-y","1","-z","1"]
     call(command)
     command = [animaTransformSerieXmlGenerator,"-i",os.path.join(animaExtraDataDir,"id.txt"),"-o",os.path.join(tmpFolder,"idn.xml")]
     call(command)
-    command = [animaApplyTransformSerie, "-i", os.path.join(tmpFolder,"T1-normed_nyul.nrrd"), "-g", os.path.join(tmpFolder,"FLAIR-normed_nyul-upsampleAnima.nii.gz"),
-               "-t",os.path.join(tmpFolder,"idn.xml"),"-o",os.path.join(tmpFolder,"T1-normed_nyul-upsampleAnima.nii.gz")]
+    command = [animaApplyTransformSerie, "-i", os.path.join(tmpFolder,"T1_masked_normed_nyul.nrrd"), "-g", os.path.join(tmpFolder,"FLAIR_masked_normed_nyul_upsampleAnima.nii.gz"),
+               "-t",os.path.join(tmpFolder,"idn.xml"),"-o",os.path.join(tmpFolder,"T1_masked_normed_nyul_upsampleAnima.nii.gz")]
     call(command)
-    command = [animaApplyTransformSerie, "-i", os.path.join(tmpFolder,"T2-normed_nyul.nrrd"), "-g", os.path.join(tmpFolder,"FLAIR-normed_nyul-upsampleAnima.nii.gz"),
-               "-t",os.path.join(tmpFolder,"idn.xml"),"-o",os.path.join(tmpFolder,"T2-normed_nyul-upsampleAnima.nii.gz")]
+    command = [animaApplyTransformSerie, "-i", os.path.join(tmpFolder,"T2_masked_normed_nyul.nrrd"), "-g", os.path.join(tmpFolder,"FLAIR_masked_normed_nyul_upsampleAnima.nii.gz"),
+               "-t",os.path.join(tmpFolder,"idn.xml"),"-o",os.path.join(tmpFolder,"T2_masked_normed_nyul_upsampleAnima.nii.gz")]
     call(command)

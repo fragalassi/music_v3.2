@@ -7,6 +7,8 @@ import shutil
 import argparse
 import tempfile
 
+print('   parse ~/.anima/config.txt')
+
 if sys.version_info[0] < 3:
     sys.exit('Python must be of version 3 or higher for this script.')
 
@@ -30,6 +32,8 @@ import animaMusicLesionCoreProcessing_v3 as coreproc
 import animaMusicLesionPostProcessing_v3 as postproc
 
 #tmpFolder = tempfile.mkdtemp()
+
+print('   parse input arguments')
 
 parser = argparse.ArgumentParser(
     prog='animaMusicLesionSegmentation_v3.py',
@@ -55,6 +59,13 @@ outputFolder=args.outputFolder
 cImage=args.consensus
 training=args.training
 nbThreads=str(args.nbThreads)
+
+print('Input modalities:')
+print(flairImage)
+print(t1Image)
+print(t2Image)
+print('Output folder:')
+print(outputFolder)
 
 if cImage is not None and not(os.path.isfile(cImage)):
     print("IO Error: the file "+cImage+" doesn't exist.")
@@ -91,9 +102,16 @@ if not training:
     modelName = "t1_flair_1608_ce_noNorm_upsampleAnima_rev1"
     if not(os.path.isdir(os.path.join(tmpFolder, modelName))):
         os.makedirs(os.path.join(tmpFolder, modelName))
-    t1Image = os.path.join(tmpFolder, "T1_masked-upsampleAnima.nii.gz")
-    t2Image = os.path.join(tmpFolder, "T2_masked-upsampleAnima.nii.gz")
-    flairImage = os.path.join(tmpFolder, "FLAIR_masked-upsampleAnima.nii.gz")    
+    
+    # Use unnormalized images
+    # t1Image = os.path.join(tmpFolder, "T1_masked-upsampleAnima.nii.gz")
+    # t2Image = os.path.join(tmpFolder, "T2_masked-upsampleAnima.nii.gz")
+    # flairImage = os.path.join(tmpFolder, "FLAIR_masked-upsampleAnima.nii.gz")
+    # Use normalized images
+    t1Image = os.path.join(tmpFolder, "T1_masked_normed_nyul_upsampleAnima.nii.gz")
+    t2Image = os.path.join(tmpFolder, "T2_masked_normed_nyul_upsampleAnima.nii.gz")
+    flairImage = os.path.join(tmpFolder, "FLAIR_masked_normed_nyul_upsampleAnima.nii.gz")
+    
     coreproc.music_lesion_core_processing(animaExtraDataDir, t1Image, t2Image, flairImage, modelName, tmpFolder)
 
     #------------------------------------------------------ Now run post-processing
