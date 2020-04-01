@@ -74,7 +74,7 @@ with open(dataFile, 'r', encoding='utf-8') as f:
 
         print("  Process...")
         # Compute the segmentation
-        additionalParameters = " -p -c " + label if train else ""
+        additionalParameters = " -p true -c " + label if train else ""
         segmentationCommand = "python3 animaMusicLesionSegmentation_v3.py -f " + flair + " --t1 " + t1 + " --t2 " + t2 + " -m " + mask + " -n " + nbThreads + additionalParameters + " -o " + output
         segmentationProcess = subprocess.Popen(segmentationCommand, stdout=subprocess.PIPE, shell=True)
         segmentationProcessStatus = segmentationProcess.wait()
