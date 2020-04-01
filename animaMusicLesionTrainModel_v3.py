@@ -20,7 +20,7 @@ configParser.read(configFilePath)
 animaExtraDataDir = configParser.get("anima-scripts", 'extra-data-root')
 
 parser = argparse.ArgumentParser(
-    prog='Anima Music MS Lesion Segmentation training',
+    prog='animaMusicLesionTrainModel_v3.py',
     formatter_class=argparse.RawDescriptionHelpFormatter,
     description='Train the cascaded CNN to segment MS Lesions.')
 

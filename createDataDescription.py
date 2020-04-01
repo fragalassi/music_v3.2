@@ -4,8 +4,8 @@ import pathlib
 
 # /local/EMISEP_Brain_Segmentation/new\ lesions/montpellier_20170112_07/brain/M0/flair/flair.nii.gz
 
-sourceDataPath = r'/local/EMISEP_Brain_Segmentation/new\ lesions/'
-outputDirectory = '/home/amasson/MusicTempData/'
+sourceDataPath = r'/data/EMISEP_Brain_Segmentation/'
+outputDirectory = '/data/output/'
 
 json_dict = {}
 json_dict['name'] = "EMISEP"

@@ -6,12 +6,12 @@ import pathlib
 import argparse
 
 parser = argparse.ArgumentParser(
-    prog='Anima Music MS Lesion Segmentation',
+    prog='main.py',
     formatter_class=argparse.RawDescriptionHelpFormatter,
     description='Compute MS lesion segmentation using a cascaded CNN.')
 
-parser.add_argument('-t', '--train', required=False, default=False, type=bool, help='Train the model')
 parser.add_argument('-d', '--data', required=True, help='Path to the data description file (.json). See createDataDescription.py')
+parser.add_argument('-t', '--train', required=False, default=False, type=bool, help='Train the model')
 parser.add_argument('-p', '--preprocess', required=False, default=True, type=bool, help='Preprocess the data with anima tools.')
 parser.add_argument('-n', '--nbThreads', required=False, type=int, help='Number of execution threads (default: 0 = all cores)', default=0)
 
