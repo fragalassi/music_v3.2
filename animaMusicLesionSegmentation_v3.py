@@ -104,9 +104,9 @@ if not training:
         os.makedirs(os.path.join(tmpFolder, modelName))
     
     # Use unnormalized images
-    # t1Image = os.path.join(tmpFolder, "T1_masked-upsampleAnima.nii.gz")
-    # t2Image = os.path.join(tmpFolder, "T2_masked-upsampleAnima.nii.gz")
-    # flairImage = os.path.join(tmpFolder, "FLAIR_masked-upsampleAnima.nii.gz")
+    # t1Image = os.path.join(tmpFolder, "T1_masked_upsampleAnima.nii.gz")
+    # t2Image = os.path.join(tmpFolder, "T2_masked_upsampleAnima.nii.gz")
+    # flairImage = os.path.join(tmpFolder, "FLAIR_masked_upsampleAnima.nii.gz")
     # Use normalized images
     t1Image = os.path.join(tmpFolder, "T1_masked_normed_nyul_upsampleAnima.nii.gz")
     t2Image = os.path.join(tmpFolder, "T2_masked_normed_nyul_upsampleAnima.nii.gz")
