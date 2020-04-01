@@ -20,32 +20,9 @@ configParser.read(configFilePath)
 
 animaExtraDataDir = configParser.get("anima-scripts", 'extra-data-root')
 
-# Initialize the program parser and get the arguments
-parser = argparse.ArgumentParser(
-    prog='animaMusicLesionTrainModel_v3.py',
-    formatter_class=argparse.RawDescriptionHelpFormatter,
-    description='Train the cascaded CNN to segment MS Lesions.')
-
-parser.add_argument('-i', '--inputDirectory', required=True, help='Training data: the directory containing all training subjects.')
-parser.add_argument('-m', '--model', default="t1_flair_1608_ce_noNorm_upsampleAnima_rev1", help='Model name.')
-parser.add_argument('-f', '--flair', default="FLAIR_masked-upsampleAnima.nii.gz", help='FLAIR file name.')
-parser.add_argument('-t', '--t1', default="T1_masked-upsampleAnima.nii.gz", help='T1 file name.')
-parser.add_argument('-T', '--t2', default="T2_masked-upsampleAnima.nii.gz", help='T2 file name.')
-parser.add_argument('-l', '--label', default="Consensus-upsampleAnima.nii.gz", help='Label file name.')
-
-args = parser.parse_args()
-
-train_subjects = args.inputDirectory
-
-modelName = args.model
-t1Image = args.t1
-t2Image = args.t2
-flairImage = args.flair
-cImage = args.label
-
 # Train the model
 
-def music_lesion_train_model(animaExtraDataDir, train_subjects, t1Image, t2Image, flairImage, cImage, modelName):
+def music_lesion_train_model(train_subjects, t1Image="T1_masked_normed_nyul_upsampleAnima.nii.gz", t2Image="T2_masked_normed_nyul_upsampleAnima.nii.gz", flairImage="FLAIR_masked_normed_nyul_upsampleAnima.nii.gz", cImage="Consensus_upsampleAnima.nii.gz", modelName="t1_flair_1608_ce_noNorm_upsampleAnima_rev1"):
     
     options = {}
     
@@ -101,6 +78,3 @@ def music_lesion_train_model(animaExtraDataDir, train_subjects, t1Image, t2Image
     # saves the weights
     model[0]['net'].save_weights(os.path.join(animaExtraDataDir,"ms_lesion_models",modelName+'_weights_1.h5'),overwrite=True)
     model[1]['net'].save_weights(os.path.join(animaExtraDataDir,"ms_lesion_models",modelName+'_weights_2.h5'),overwrite=True)
-
-print(modelName)
-music_lesion_train_model(animaExtraDataDir, train_subjects, t1Image, t2Image, flairImage, cImage, modelName)

@@ -5,6 +5,10 @@ import subprocess
 import pathlib
 import argparse
 
+import animaMSExamPreparation as examPreparation
+import animaMusicLesionSegmentation_v3 as lesionSegmentation
+import animaMusicLesionTrainModel_v3 as trainModel
+
 # Find lesions or train the model with the given dataset
 #
 # usage: main.py [-h] -d DATA [-t TRAIN] [-p PREPROCESS] [-n NBTHREADS]
@@ -60,10 +64,7 @@ with open(dataFile, 'r', encoding='utf-8') as f:
 
         # Preprocess the data (if necessary)
         if preprocessData:
-            print("  Preprocess...")
-            preprocessingCommand = "python3 animaMSExamPreparation.py -r " + flair + " -f " + flair + " --t1 " + t1 + " --t2 " + t2 + " -o " + output
-            preprocessingProcess = subprocess.Popen(preprocessingCommand, stdout=subprocess.PIPE, shell=True)
-            preprocessingProcessStatus = preprocessingProcess.communicate()
+            examPreparation.process(reference=flair, flair=flair, t1=t1, t2=t2, outputFolder=output)
 
             flair = os.path.join(output, os.path.basename(flair)[:-len(fileExtension)] + fileExtension)
             t1 = os.path.join(output, os.path.basename(t1)[:-len(fileExtension)] + fileExtension)
@@ -71,17 +72,12 @@ with open(dataFile, 'r', encoding='utf-8') as f:
         
         mask = patient['mask']
         label = patient['label']
-
+        
         print("  Process...")
         # Compute the segmentation
-        additionalParameters = " -p true -c " + label if train else ""
-        segmentationCommand = "python3 animaMusicLesionSegmentation_v3.py -f " + flair + " --t1 " + t1 + " --t2 " + t2 + " -m " + mask + " -n " + nbThreads + additionalParameters + " -o " + output
-        segmentationProcess = subprocess.Popen(segmentationCommand, stdout=subprocess.PIPE, shell=True)
-        segmentationProcessStatus = segmentationProcess.communicate()
+        lesionSegmentation.process(flair, t1, t2, mask, label, output, nbThreads, train)
 
     # Train the model (if necessary)
     if train:
         print("Train...")
-        trainingCommand = "PTHONHASHSEED=0 python3 animaMusicLesionTrainModel_v3.py -i " + outputDirectory
-        trainingProcess = subprocess.Popen(trainingCommand, stdout=subprocess.PIPE, shell=True)
-        trainingProcessStatus = trainingProcess.communicate()
+        trainModel.music_lesion_train_model(outputDirectory, t1Image="T1_masked_normed_nyul_upsampleAnima.nii.gz", t2Image="T2_masked_normed_nyul_upsampleAnima.nii.gz", flairImage="FLAIR_masked_normed_nyul_upsampleAnima.nii.gz", cImage="Consensus_upsampleAnima.nii.gz", modelName="t1_flair_1608_ce_noNorm_upsampleAnima_rev1")
