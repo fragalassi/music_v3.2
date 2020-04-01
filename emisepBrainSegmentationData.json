@@ -1,0 +1,665 @@
+{
+    "training": [
+        {
+            "output": "/data/output/rennes_20170112_36_M0",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_36/brain/M0/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_36/brain/M0/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_36/brain/M0/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_36/brain/M0/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_36/brain/M0/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_36_M24",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_36/brain/M24/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_36/brain/M24/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_36/brain/M24/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_36/brain/M24/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_36/brain/M24/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_46_M0",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_46/brain/M0/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_46/brain/M0/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_46/brain/M0/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_46/brain/M0/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_46/brain/M0/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_46_M24",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_46/brain/M24/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_46/brain/M24/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_46/brain/M24/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_46/brain/M24/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_46/brain/M24/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/montpellier_20170112_17_M0",
+            "mask": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_17/brain/M0/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_17/brain/M0/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_17/brain/M0/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_17/brain/M0/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_17/brain/M0/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/montpellier_20170112_17_M24",
+            "mask": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_17/brain/M24/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_17/brain/M24/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_17/brain/M24/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_17/brain/M24/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_17/brain/M24/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_12_M0",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_12/brain/M0/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_12/brain/M0/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_12/brain/M0/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_12/brain/M0/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_12/brain/M0/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_12_M24",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_12/brain/M24/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_12/brain/M24/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_12/brain/M24/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_12/brain/M24/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_12/brain/M24/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_06_M0",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_06/brain/M0/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_06/brain/M0/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_06/brain/M0/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_06/brain/M0/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_06/brain/M0/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_06_M24",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_06/brain/M24/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_06/brain/M24/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_06/brain/M24/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_06/brain/M24/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_06/brain/M24/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_01_M0",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_01/brain/M0/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_01/brain/M0/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_01/brain/M0/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_01/brain/M0/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_01/brain/M0/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_01_M24",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_01/brain/M24/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_01/brain/M24/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_01/brain/M24/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_01/brain/M24/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_01/brain/M24/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_58_M0",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_58/brain/M0/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_58/brain/M0/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_58/brain/M0/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_58/brain/M0/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_58/brain/M0/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_58_M24",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_58/brain/M24/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_58/brain/M24/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_58/brain/M24/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_58/brain/M24/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_58/brain/M24/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_74_M0",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_74/brain/M0/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_74/brain/M0/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_74/brain/M0/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_74/brain/M0/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_74/brain/M0/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_74_M24",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_74/brain/M24/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_74/brain/M24/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_74/brain/M24/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_74/brain/M24/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_74/brain/M24/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_24_M0",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_24/brain/M0/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_24/brain/M0/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_24/brain/M0/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_24/brain/M0/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_24/brain/M0/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_24_M24",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_24/brain/M24/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_24/brain/M24/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_24/brain/M24/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_24/brain/M24/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_24/brain/M24/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_48_M0",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_48/brain/M0/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_48/brain/M0/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_48/brain/M0/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_48/brain/M0/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_48/brain/M0/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_48_M24",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_48/brain/M24/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_48/brain/M24/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_48/brain/M24/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_48/brain/M24/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_48/brain/M24/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_51_M0",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_51/brain/M0/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_51/brain/M0/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_51/brain/M0/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_51/brain/M0/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_51/brain/M0/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_51_M24",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_51/brain/M24/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_51/brain/M24/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_51/brain/M24/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_51/brain/M24/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_51/brain/M24/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_33_M0",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_33/brain/M0/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_33/brain/M0/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_33/brain/M0/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_33/brain/M0/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_33/brain/M0/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_33_M24",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_33/brain/M24/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_33/brain/M24/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_33/brain/M24/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_33/brain/M24/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_33/brain/M24/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_49_M0",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_49/brain/M0/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_49/brain/M0/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_49/brain/M0/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_49/brain/M0/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_49/brain/M0/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_49_M24",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_49/brain/M24/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_49/brain/M24/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_49/brain/M24/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_49/brain/M24/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_49/brain/M24/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_64_M0",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_64/brain/M0/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_64/brain/M0/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_64/brain/M0/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_64/brain/M0/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_64/brain/M0/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_64_M24",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_64/brain/M24/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_64/brain/M24/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_64/brain/M24/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_64/brain/M24/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_64/brain/M24/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_42_M0",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_42/brain/M0/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_42/brain/M0/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_42/brain/M0/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_42/brain/M0/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_42/brain/M0/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_42_M24",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_42/brain/M24/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_42/brain/M24/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_42/brain/M24/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_42/brain/M24/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_42/brain/M24/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_60_M0",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_60/brain/M0/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_60/brain/M0/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_60/brain/M0/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_60/brain/M0/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_60/brain/M0/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_60_M24",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_60/brain/M24/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_60/brain/M24/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_60/brain/M24/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_60/brain/M24/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_60/brain/M24/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_10_M0",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_10/brain/M0/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_10/brain/M0/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_10/brain/M0/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_10/brain/M0/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_10/brain/M0/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_10_M24",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_10/brain/M24/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_10/brain/M24/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_10/brain/M24/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_10/brain/M24/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_10/brain/M24/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_21_M0",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_21/brain/M0/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_21/brain/M0/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_21/brain/M0/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_21/brain/M0/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_21/brain/M0/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_21_M24",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_21/brain/M24/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_21/brain/M24/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_21/brain/M24/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_21/brain/M24/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_21/brain/M24/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_34_M0",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_34/brain/M0/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_34/brain/M0/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_34/brain/M0/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_34/brain/M0/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_34/brain/M0/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_34_M24",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_34/brain/M24/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_34/brain/M24/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_34/brain/M24/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_34/brain/M24/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_34/brain/M24/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_62_M0",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_62/brain/M0/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_62/brain/M0/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_62/brain/M0/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_62/brain/M0/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_62/brain/M0/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_62_M24",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_62/brain/M24/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_62/brain/M24/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_62/brain/M24/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_62/brain/M24/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_62/brain/M24/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_19_M0",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_19/brain/M0/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_19/brain/M0/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_19/brain/M0/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_19/brain/M0/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_19/brain/M0/t2/t2.nii.gz"
+        }
+    ],
+    "file-extension": ".nii.gz",
+    "testing": [
+        {
+            "output": "/data/output/rennes_20170112_19_M24",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_19/brain/M24/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_19/brain/M24/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_19/brain/M24/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_19/brain/M24/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_19/brain/M24/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/montpellier_20170112_38_M0",
+            "mask": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_38/brain/M0/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_38/brain/M0/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_38/brain/M0/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_38/brain/M0/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_38/brain/M0/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/montpellier_20170112_38_M24",
+            "mask": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_38/brain/M24/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_38/brain/M24/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_38/brain/M24/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_38/brain/M24/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_38/brain/M24/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_23_M0",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_23/brain/M0/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_23/brain/M0/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_23/brain/M0/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_23/brain/M0/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_23/brain/M0/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_23_M24",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_23/brain/M24/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_23/brain/M24/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_23/brain/M24/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_23/brain/M24/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_23/brain/M24/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_16_M0",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_16/brain/M0/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_16/brain/M0/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_16/brain/M0/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_16/brain/M0/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_16/brain/M0/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_16_M24",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_16/brain/M24/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_16/brain/M24/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_16/brain/M24/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_16/brain/M24/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_16/brain/M24/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_05_M0",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_05/brain/M0/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_05/brain/M0/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_05/brain/M0/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_05/brain/M0/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_05/brain/M0/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_05_M24",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_05/brain/M24/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_05/brain/M24/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_05/brain/M24/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_05/brain/M24/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_05/brain/M24/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_63_M0",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_63/brain/M0/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_63/brain/M0/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_63/brain/M0/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_63/brain/M0/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_63/brain/M0/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_63_M24",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_63/brain/M24/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_63/brain/M24/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_63/brain/M24/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_63/brain/M24/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_63/brain/M24/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/montpellier_20170112_07_M0",
+            "mask": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_07/brain/M0/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_07/brain/M0/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_07/brain/M0/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_07/brain/M0/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_07/brain/M0/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/montpellier_20170112_07_M24",
+            "mask": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_07/brain/M24/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_07/brain/M24/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_07/brain/M24/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_07/brain/M24/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_07/brain/M24/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_41_M0",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_41/brain/M0/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_41/brain/M0/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_41/brain/M0/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_41/brain/M0/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_41/brain/M0/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_41_M24",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_41/brain/M24/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_41/brain/M24/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_41/brain/M24/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_41/brain/M24/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_41/brain/M24/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_45_M0",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_45/brain/M0/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_45/brain/M0/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_45/brain/M0/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_45/brain/M0/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_45/brain/M0/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_45_M24",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_45/brain/M24/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_45/brain/M24/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_45/brain/M24/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_45/brain/M24/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_45/brain/M24/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_67_M0",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_67/brain/M0/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_67/brain/M0/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_67/brain/M0/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_67/brain/M0/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_67/brain/M0/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_67_M24",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_67/brain/M24/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_67/brain/M24/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_67/brain/M24/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_67/brain/M24/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_67/brain/M24/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_72_M0",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_72/brain/M0/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_72/brain/M0/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_72/brain/M0/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_72/brain/M0/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_72/brain/M0/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_72_M24",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_72/brain/M24/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_72/brain/M24/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_72/brain/M24/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_72/brain/M24/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_72/brain/M24/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_20_M0",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_20/brain/M0/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_20/brain/M0/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_20/brain/M0/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_20/brain/M0/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_20/brain/M0/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_20_M24",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_20/brain/M24/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_20/brain/M24/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_20/brain/M24/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_20/brain/M24/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_20/brain/M24/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_26_M0",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_26/brain/M0/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_26/brain/M0/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_26/brain/M0/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_26/brain/M0/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_26/brain/M0/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_26_M24",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_26/brain/M24/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_26/brain/M24/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_26/brain/M24/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_26/brain/M24/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_26/brain/M24/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_73_M0",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_73/brain/M0/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_73/brain/M0/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_73/brain/M0/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_73/brain/M0/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_73/brain/M0/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_73_M24",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_73/brain/M24/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_73/brain/M24/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_73/brain/M24/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_73/brain/M24/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_73/brain/M24/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_50_M0",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_50/brain/M0/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_50/brain/M0/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_50/brain/M0/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_50/brain/M0/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_50/brain/M0/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_50_M24",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_50/brain/M24/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_50/brain/M24/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_50/brain/M24/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_50/brain/M24/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_50/brain/M24/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_28_M0",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_28/brain/M0/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_28/brain/M0/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_28/brain/M0/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_28/brain/M0/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_28/brain/M0/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_28_M24",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_28/brain/M24/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_28/brain/M24/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_28/brain/M24/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_28/brain/M24/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_28/brain/M24/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/montpellier_20170112_59_M0",
+            "mask": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_59/brain/M0/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_59/brain/M0/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_59/brain/M0/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_59/brain/M0/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_59/brain/M0/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/montpellier_20170112_59_M24",
+            "mask": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_59/brain/M24/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_59/brain/M24/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_59/brain/M24/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_59/brain/M24/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_59/brain/M24/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/montpellier_20170112_13_M0",
+            "mask": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_13/brain/M0/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_13/brain/M0/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_13/brain/M0/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_13/brain/M0/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_13/brain/M0/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/montpellier_20170112_13_M24",
+            "mask": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_13/brain/M24/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_13/brain/M24/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_13/brain/M24/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_13/brain/M24/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/montpellier_20170112_13/brain/M24/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_30_M0",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_30/brain/M0/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_30/brain/M0/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_30/brain/M0/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_30/brain/M0/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_30/brain/M0/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_30_M24",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_30/brain/M24/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_30/brain/M24/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_30/brain/M24/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_30/brain/M24/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_30/brain/M24/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_04_M0",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_04/brain/M0/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_04/brain/M0/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_04/brain/M0/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_04/brain/M0/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_04/brain/M0/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_04_M24",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_04/brain/M24/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_04/brain/M24/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_04/brain/M24/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_04/brain/M24/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_04/brain/M24/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_27_M0",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_27/brain/M0/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_27/brain/M0/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_27/brain/M0/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_27/brain/M0/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_27/brain/M0/t2/t2.nii.gz"
+        },
+        {
+            "output": "/data/output/rennes_20170112_27_M24",
+            "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_27/brain/M24/flair/flair_noskull.nii.gz",
+            "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_27/brain/M24/flair/flair_lesion_manual.nii.gz",
+            "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_27/brain/M24/flair/flair.nii.gz",
+            "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_27/brain/M24/t1/t1.nii.gz",
+            "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_27/brain/M24/t2/t2.nii.gz"
+        }
+    ],
+    "output-directory": "/data/output/",
+    "name": "EMISEP"
+}

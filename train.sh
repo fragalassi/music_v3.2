@@ -16,4 +16,4 @@ module load cuda/9.0.176
 
 chmod +x $SCRIPTDIR/*.py
 
-PYTHONHASHSEED=0 python3 $SCRIPTDIR/main.py -t -d emisepBrainSegmentationData.json -p -n 6
+PYTHONHASHSEED=0 python3 $SCRIPTDIR/main.py -t true -d emisepBrainSegmentationData.json -p true -n 6

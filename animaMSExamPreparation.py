@@ -26,7 +26,7 @@ animaExtraDataDir = configParser.get("anima-scripts", 'extra-data-root')
 animaScriptsDir="/udd/fgalassi/Anima-Scripts"
 
 parser = argparse.ArgumentParser(
-    prog='animaMSExamPreparation',
+    prog='animaMSExamPreparation.py',
     formatter_class=argparse.RawDescriptionHelpFormatter,
     description="Registers and pre-processes input images of an MS patient sequence onto a common reference.")
 
