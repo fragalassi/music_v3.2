@@ -2,30 +2,64 @@ import json
 import os
 import pathlib
 
-# /local/EMISEP_Brain_Segmentation/new\ lesions/montpellier_20170112_07/brain/M0/flair/flair.nii.gz
+# Create a description of the data
+# Outputs a json file describing where to find the files in the dataset
+# The json file has the following format:
+# {
+#     "name": "EMISEP",
+#     "file-extension": ".nii.gz",
+#     "output-directory": "/data/output/",
+#     "training": [
+#         {
+#             "output": "/data/output/rennes_20170112_36_M0",
+#             "mask": "/data/EMISEP_Brain_Segmentation/rennes_20170112_36/brain/M0/flair/flair_noskull.nii.gz",
+#             "label": "/data/EMISEP_Brain_Segmentation/rennes_20170112_36/brain/M0/flair/flair_lesion_manual.nii.gz",
+#             "flair": "/data/EMISEP_Brain_Segmentation/rennes_20170112_36/brain/M0/flair/flair.nii.gz",
+#             "t1": "/data/EMISEP_Brain_Segmentation/rennes_20170112_36/brain/M0/t1/t1.nii.gz",
+#             "t2": "/data/EMISEP_Brain_Segmentation/rennes_20170112_36/brain/M0/t2/t2.nii.gz"
+#         },
+#         ...
+#     ]
+#     "testing": [ /* same format as training */ ]
+# }
+# The preprocessing will output preprocessed files which will be used by the core processing.
+# Thus, the preprocessing output directory of each patient must be in the "output-directory" defined above,
+# so that the core processing find them.
 
-sourceDataPath = r'/data/EMISEP_Brain_Segmentation/'
+# /data/EMISEP_Brain_Segmentation/montpellier_20170112_07/brain/M0/flair/flair.nii.gz
+
+sourceDataPath = '/data/EMISEP_Brain_Segmentation/'
 outputDirectory = '/data/output/'
+
+trainingIds = [6, 48, 73, 67, 59, 27, 58, 24, 13, 28, 41, 42, 38, 45, 17, 1, 36, 51, 7, 20, 21, 60, 62]
+testingIds = [26, 23, 4, 49, 46, 72, 63, 64, 5, 10, 12, 16, 19, 30, 33, 34, 50, 74]
 
 json_dict = {}
 json_dict['name'] = "EMISEP"
 json_dict['file-extension'] = ".nii.gz"
 json_dict['output-directory'] = outputDirectory
 
-patients = []
+trainingSet = []
+testingSet = []
 
+# For each patient: add file paths to the corresponding set
 for patientName in os.listdir(sourceDataPath):
     
+    # Find to which set the patient belongs (training set or test set)
+    patientId = int(patientName.split('_')[-1])
+    patientSet = trainingSet if patientId in trainingIds else testingSet
+
     patientPath = os.path.join(sourceDataPath, patientName)
 
     if os.path.isdir(patientPath):
         
+        # Do the same thing for both temporal points
         for temporalPoint in ['M0', 'M24']:
 
+            # Create the file paths and add them to the set
             flair = os.path.join(sourceDataPath, patientName, 'brain', temporalPoint, 'flair', 'flair.nii.gz')
             t1 = os.path.join(sourceDataPath, patientName, 'brain', temporalPoint, 't1', 't1.nii.gz')
             t2 = os.path.join(sourceDataPath, patientName, 'brain', temporalPoint, 't2', 't2.nii.gz')
-            
             mask = os.path.join(sourceDataPath, patientName, 'brain', temporalPoint, 'flair', 'flair_noskull.nii.gz')
             consensus = os.path.join(sourceDataPath, patientName, 'brain', temporalPoint, 'flair', 'flair_lesion_manual.nii.gz')
 
@@ -33,11 +67,11 @@ for patientName in os.listdir(sourceDataPath):
             #           it cannot be outputDirectory/patientID/TemporalPoint/outputFiles.nii.gz
             patientOutputDirectory = os.path.join(outputDirectory, patientName + '_' + temporalPoint)
 
-            patients.append({'flair': flair, 't1': t1, 't2t': t2, 'output': patientOutputDirectory, 'mask': mask, 'label': consensus })
+            patientSet.append({'flair': flair, 't1': t1, 't2': t2, 'output': patientOutputDirectory, 'mask': mask, 'label': consensus })
 
+json_dict['training'] = trainingSet
+json_dict['testing'] = testingSet
 
-json_dict['training'] = patients[:len(patients)//2]
-json_dict['test'] = patients[len(patients)//2:]
-
+# Write the json file
 with open("emisepBrainSegmentationData.json", 'w', encoding='utf-8') as f:
     json.dump(json_dict, f, ensure_ascii=False, indent=4)

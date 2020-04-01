@@ -4,6 +4,7 @@ import argparse
 from CNN_training_tools.build_model import cascade_model
 from CNN_training_tools.base import train_cascaded_model
 
+# Read the anima extra-data directory path in ~/.anima/config.txt
 if sys.version_info[0] > 2:
     import configparser as ConfParser
 else:
@@ -19,6 +20,7 @@ configParser.read(configFilePath)
 
 animaExtraDataDir = configParser.get("anima-scripts", 'extra-data-root')
 
+# Initialize the program parser and get the arguments
 parser = argparse.ArgumentParser(
     prog='animaMusicLesionTrainModel_v3.py',
     formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -40,6 +42,8 @@ t1Image = args.t1
 t2Image = args.t2
 flairImage = args.flair
 cImage = args.label
+
+# Train the model
 
 def music_lesion_train_model(animaExtraDataDir, train_subjects, t1Image, t2Image, flairImage, cImage, modelName):
     
