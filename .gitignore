@@ -1,6 +1,8 @@
+CNN_training_tools/__pycache__/
 __pycache__/
 bin/
 lib/
 lib64
 pyvenv.cfg
 .DS_Store
+*.pyc

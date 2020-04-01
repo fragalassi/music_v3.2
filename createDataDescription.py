@@ -45,14 +45,14 @@ testingSet = []
 # For each patient: add file paths to the corresponding set
 for patientName in os.listdir(sourceDataPath):
     
-    # Find to which set the patient belongs (training set or test set)
-    patientId = int(patientName.split('_')[-1])
-    patientSet = trainingSet if patientId in trainingIds else testingSet
-
     patientPath = os.path.join(sourceDataPath, patientName)
 
-    if os.path.isdir(patientPath):
-        
+    if os.path.isdir(patientPath):                                              # Only consider directories
+
+        # Find to which set the patient belongs (training set or test set)
+        patientId = int(patientName.split('_')[-1])
+        patientSet = trainingSet if patientId in trainingIds else testingSet
+
         # Do the same thing for both temporal points
         for temporalPoint in ['M0', 'M24']:
 
