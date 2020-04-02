@@ -32,15 +32,21 @@ animaN4BiasCorrection = os.path.join(animaDir, "animaN4BiasCorrection")
 animaConvertImage = os.path.join(animaDir, "animaConvertImage")
 #animaBrainExtractionScript = os.path.join(animaScriptsDir, "brain_extraction", "animaAtlasBasedBrainExtraction.py")
 
+def extractExtension(fileName):
+    fileNamePrefix = os.path.splitext(fileName)[0]
+    if os.path.splitext(fileName)[1] == '.gz':
+        fileNamePrefix = os.path.splitext(fileNamePrefix)[0]
+    return fileNamePrefix
+
 def process(reference, flair, t1, t1_gd="", t2="", outputFolder=tempfile.gettempdir()):
     
     refImage = reference
 
-    listImages = [flair, t1]
+    images = [flair, t1]
     if t1_gd != "":
-        listImages.append(t1_gd)
+        images.append(t1_gd)
     if t2 != "":
-        listImages.append(t2)
+        images.append(t2)
 
     tmpFolder = outputFolder
 
@@ -62,21 +68,16 @@ def process(reference, flair, t1, t1_gd="", t2="", outputFolder=tempfile.gettemp
     if large_image:
         pyramidOptions = ["-p", "5", "-l", "2"]
 
-    refImagePrefix = os.path.splitext(refImage)[0]
-    print(refImagePrefix)
-    if os.path.splitext(refImage)[1] == '.gz':
-        refImagePrefix = os.path.splitext(refImagePrefix)[0]
+    refImagePrefix = extractExtension(refImage)
 
     brainMask = refImagePrefix + "_brainMask.nrrd"
 
     # Main loop
-    for i in range(0, len(listImages)):
-        inputPrefix = os.path.splitext(listImages[i])[0]
-        if os.path.splitext(listImages[i])[1] == '.gz':
-            inputPrefix = os.path.splitext(inputPrefix)[0]
+    for image in images:
+        inputPrefix = extractExtension(image)
 
         registeredDataFile = os.path.join(tmpFolder, "SecondImage_registered.nrrd")
-        rigidRegistrationCommand = [animaPyramidalBMRegistration, "-r", refImage, "-m", listImages[i], "-o",
+        rigidRegistrationCommand = [animaPyramidalBMRegistration, "-r", refImage, "-m", image, "-o",
                                     registeredDataFile] + pyramidOptions
         call(rigidRegistrationCommand)
 
@@ -92,6 +93,9 @@ def process(reference, flair, t1, t1_gd="", t2="", outputFolder=tempfile.gettemp
         secondMaskCommand = [animaMaskImage, "-i", nlmSecondImage, "-m", brainMask, "-o", outputPreprocessedFile]
         call(secondMaskCommand)
 
+    for image in images:
+        inputPrefix = extractExtension(image)
+        
         tempFileNames = ['_aff.nrrd', '_aff_tr.txt', '_brainMask.nrrd', '_masked.nrrd', '_nl.nrrd', '_nl_tr.nrrd', '_nl_tr.xml', '_preprocessed.nrrd', '_rig.nrrd', '_rig_tr.txt', '_rough_brainMask.nrrd', '_rough_masked.nrrd']
         for tempFileName in tempFileNames:
             if os.path.isfile(inputPrefix + tempFileName):

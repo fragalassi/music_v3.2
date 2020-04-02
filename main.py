@@ -44,12 +44,11 @@ nbThreads = str(args.nbThreads)
 
 dataName = 'training' if train else 'testing'
 
-fileExtension = '.nrrd'
-
 with open(dataFile, 'r', encoding='utf-8') as f:
     json_dict = json.load(f)
 
     outputDirectory = json_dict['output-directory']
+    fileExtension = json_dict['file-extension']
 
     # For all patient in the target dataset (training set or testing set)
     for patient in json_dict[dataName]:
