@@ -55,8 +55,15 @@ def music_lesion_train_model(train_subjects, t1Image="T1_masked_normed_nyul_upsa
     options['x_names'] = [t1Image, t2Image, flairImage]
     options['y_names'] = [cImage]
 
-    list_of_scans = os.listdir(options['train_folder'])
+    list_of_scans = []
+    for folder in os.listdir(options['train_folder']):
+        if (os.path.exists(os.path.join(options['train_folder'], folder, t1Image)) and 
+            os.path.exists(os.path.join(options['train_folder'], folder, t2Image)) and
+            os.path.exists(os.path.join(options['train_folder'], folder, flairImage)) and 
+            os.path.exists(os.path.join(options['train_folder'], folder, cImage))) :
+            list_of_scans.append(folder)
     list_of_scans.sort()
+
     modalities = options['modalities']
     x_names = options['x_names']
     y_names = options['y_names']
