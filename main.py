@@ -44,10 +44,11 @@ nbThreads = str(args.nbThreads)
 
 dataName = 'training' if train else 'testing'
 
+fileExtension = '.nrrd'
+
 with open(dataFile, 'r', encoding='utf-8') as f:
     json_dict = json.load(f)
 
-    fileExtension = json_dict['file-extension']
     outputDirectory = json_dict['output-directory']
 
     # For all patient in the target dataset (training set or testing set)
@@ -61,17 +62,18 @@ with open(dataFile, 'r', encoding='utf-8') as f:
         flair = patient['flair']
         t1 = patient['t1']
         t2 = patient['t2']
+        mask = patient['mask']      # this will be overriden if preprocessing: 
+                                    #   the mask will be computed again from the flair
+        label = patient['label']
 
         # Preprocess the data (if necessary)
         if preprocessData:
             examPreparation.process(reference=flair, flair=flair, t1=t1, t2=t2, outputFolder=output)
 
-            flair = os.path.join(output, os.path.basename(flair)[:-len(fileExtension)] + fileExtension)
-            t1 = os.path.join(output, os.path.basename(t1)[:-len(fileExtension)] + fileExtension)
-            t2 = os.path.join(output, os.path.basename(t2)[:-len(fileExtension)] + fileExtension)
-        
-        mask = patient['mask']
-        label = patient['label']
+            flair = os.path.join(output, os.path.basename(flair)[:-len(fileExtension)] + '_preprocessed' + fileExtension)
+            t1 = os.path.join(output, os.path.basename(t1)[:-len(fileExtension)] + '_preprocessed' + fileExtension)
+            t2 = os.path.join(output, os.path.basename(t2)[:-len(fileExtension)] + '_preprocessed' + fileExtension)
+            mask = os.path.join(output, os.path.basename(flair)[:-len(fileExtension)] + '_brainMask' + fileExtension)
         
         print("  Process...")
         # Compute the segmentation

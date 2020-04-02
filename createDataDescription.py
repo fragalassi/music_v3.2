@@ -36,7 +36,6 @@ testingIds = [26, 23, 4, 49, 46, 72, 63, 64, 5, 10, 12, 16, 19, 30, 33, 34, 50, 
 
 json_dict = {}
 json_dict['name'] = "EMISEP"
-json_dict['file-extension'] = ".nii.gz"
 json_dict['output-directory'] = outputDirectory
 
 trainingSet = []

@@ -85,17 +85,26 @@ def process(reference, flair, t1, t1_gd="", t2="", outputFolder=tempfile.gettemp
         rigidRegistrationCommand = [animaPyramidalBMRegistration, "-r", refImage, "-m", listImages[i], "-o",
                                     registeredDataFile] + pyramidOptions
         call(rigidRegistrationCommand)
+        
+        import pdb; pdb.set_trace()
 
         unbiasedSecondImage = os.path.join(tmpFolder, "SecondImage_unbiased.nrrd")
         biasCorrectionCommand = [animaN4BiasCorrection, "-i", registeredDataFile, "-o", unbiasedSecondImage, "-B", "0.3"]
         call(biasCorrectionCommand)
 
+        import pdb; pdb.set_trace()
+
         nlmSecondImage = os.path.join(tmpFolder, "SecondImage_unbiased_nlm.nrrd")
         nlmCommand = [animaNLMeans, "-i", unbiasedSecondImage, "-o", nlmSecondImage, "-n", "3"]
         call(nlmCommand)
 
+        import pdb; pdb.set_trace()
+
         outputPreprocessedFile = os.path.join(tmpFolder, inputPrefix + "_preprocessed.nrrd")
         secondMaskCommand = [animaMaskImage, "-i", nlmSecondImage, "-m", brainMask, "-o", outputPreprocessedFile]
         call(secondMaskCommand)
+
+    import pdb; pdb.set_trace()
+    shutil.move(brainMask, tmpFolder)
 
     #shutil.rmtree(tmpFolder)
