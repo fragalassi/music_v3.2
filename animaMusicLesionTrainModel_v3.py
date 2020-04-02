@@ -79,6 +79,9 @@ def music_lesion_train_model(train_subjects, t1Image="T1_masked_normed_nyul_upsa
     model = train_cascaded_model(model, train_x_data, train_y_data, options)
     
     # saves the architecture
+    if not os.path.exists(os.path.join(animaExtraDataDir,"ms_lesion_models")):
+        os.mkdir(os.path.join(animaExtraDataDir,"ms_lesion_models"))
+    
     model[0]['net'].save(os.path.join(animaExtraDataDir,"ms_lesion_models", modelName+'_1.h5'))
     model[1]['net'].save(os.path.join(animaExtraDataDir,"ms_lesion_models", modelName+'_2.h5'))
     
