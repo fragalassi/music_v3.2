@@ -32,7 +32,6 @@ animaN4BiasCorrection = os.path.join(animaDir, "animaN4BiasCorrection")
 animaConvertImage = os.path.join(animaDir, "animaConvertImage")
 #animaBrainExtractionScript = os.path.join(animaScriptsDir, "brain_extraction", "animaAtlasBasedBrainExtraction.py")
 
-
 def process(reference, flair, t1, t1_gd="", t2="", outputFolder=tempfile.gettempdir()):
     
     refImage = reference
@@ -47,8 +46,6 @@ def process(reference, flair, t1, t1_gd="", t2="", outputFolder=tempfile.gettemp
 
     brainExtractionCommand = ["python3", "animaAtlasBasedBrainExtraction.py", "-i", refImage, "-S"]
     call(brainExtractionCommand)
-
-    print('ref image', refImage)
 
     # Decide on whether to use large image setting or small image setting
     command = [animaConvertImage, "-i", refImage, "-I"]
@@ -72,39 +69,35 @@ def process(reference, flair, t1, t1_gd="", t2="", outputFolder=tempfile.gettemp
 
     brainMask = refImagePrefix + "_brainMask.nrrd"
 
-    print('brain Mask', brainMask)
-
     # Main loop
     for i in range(0, len(listImages)):
         inputPrefix = os.path.splitext(listImages[i])[0]
         if os.path.splitext(listImages[i])[1] == '.gz':
             inputPrefix = os.path.splitext(inputPrefix)[0]
 
-        print('   ' + inputPrefix)
         registeredDataFile = os.path.join(tmpFolder, "SecondImage_registered.nrrd")
         rigidRegistrationCommand = [animaPyramidalBMRegistration, "-r", refImage, "-m", listImages[i], "-o",
                                     registeredDataFile] + pyramidOptions
         call(rigidRegistrationCommand)
-        
-        import pdb; pdb.set_trace()
 
         unbiasedSecondImage = os.path.join(tmpFolder, "SecondImage_unbiased.nrrd")
         biasCorrectionCommand = [animaN4BiasCorrection, "-i", registeredDataFile, "-o", unbiasedSecondImage, "-B", "0.3"]
         call(biasCorrectionCommand)
 
-        import pdb; pdb.set_trace()
-
         nlmSecondImage = os.path.join(tmpFolder, "SecondImage_unbiased_nlm.nrrd")
         nlmCommand = [animaNLMeans, "-i", unbiasedSecondImage, "-o", nlmSecondImage, "-n", "3"]
         call(nlmCommand)
-
-        import pdb; pdb.set_trace()
 
         outputPreprocessedFile = os.path.join(tmpFolder, inputPrefix + "_preprocessed.nrrd")
         secondMaskCommand = [animaMaskImage, "-i", nlmSecondImage, "-m", brainMask, "-o", outputPreprocessedFile]
         call(secondMaskCommand)
 
-    import pdb; pdb.set_trace()
-    shutil.move(brainMask, tmpFolder)
+        tempFileNames = ['_aff.nrrd', '_aff_tr.txt', '_brainMask.nrrd', '_masked.nrrd', '_nl.nrrd', '_nl_tr.nrrd', '_nl_tr.xml', '_preprocessed.nrrd', '_rig.nrrd', '_rig_tr.txt', '_rough_brainMask.nrrd', '_rough_masked.nrrd']
+        for tempFileName in tempFileNames:
+            if os.path.isfile(inputPrefix + tempFileName):
+                shutil.move(inputPrefix + tempFileName, tmpFolder)
+    
+    if os.path.isfile(brainMask):
+        shutil.move(brainMask, tmpFolder)
 
     #shutil.rmtree(tmpFolder)
