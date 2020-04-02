@@ -69,10 +69,10 @@ with open(dataFile, 'r', encoding='utf-8') as f:
         if preprocessData:
             examPreparation.process(reference=flair, flair=flair, t1=t1, t2=t2, outputFolder=output)
 
-            flair = os.path.join(output, os.path.basename(flair)[:-len(fileExtension)] + '_preprocessed' + fileExtension)
-            t1 = os.path.join(output, os.path.basename(t1)[:-len(fileExtension)] + '_preprocessed' + fileExtension)
-            t2 = os.path.join(output, os.path.basename(t2)[:-len(fileExtension)] + '_preprocessed' + fileExtension)
-            mask = os.path.join(output, os.path.basename(flair)[:-len(fileExtension)] + '_brainMask' + fileExtension)
+            flair = os.path.join(output, os.path.basename(flair)[:-len(fileExtension)] + '_preprocessed.nrrd')
+            t1 = os.path.join(output, os.path.basename(t1)[:-len(fileExtension)] + '_preprocessed.nrrd')
+            t2 = os.path.join(output, os.path.basename(t2)[:-len(fileExtension)] + '_preprocessed.nrrd')
+            mask = os.path.join(output, os.path.basename(flair)[:-len(fileExtension)] + '_brainMask.nrrd')
         
         print("  Process...")
         # Compute the segmentation
