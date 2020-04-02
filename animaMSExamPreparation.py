@@ -99,7 +99,7 @@ def process(reference, flair, t1, t1_gd="", t2="", outputFolder=tempfile.gettemp
         tempFileNames = ['_aff.nrrd', '_aff_tr.txt', '_brainMask.nrrd', '_masked.nrrd', '_nl.nrrd', '_nl_tr.nrrd', '_nl_tr.xml', '_preprocessed.nrrd', '_rig.nrrd', '_rig_tr.txt', '_rough_brainMask.nrrd', '_rough_masked.nrrd']
         for tempFileName in tempFileNames:
             if os.path.isfile(inputPrefix + tempFileName):
-                shutil.move(inputPrefix + tempFileName, tmpFolder)
+                shutil.move(inputPrefix + tempFileName, os.path.join(tmpFolder, os.path.basename(inputPrefix + tempFileName)))
     
     if os.path.isfile(brainMask):
         shutil.move(brainMask, tmpFolder)
