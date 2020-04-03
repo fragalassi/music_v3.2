@@ -28,13 +28,14 @@ animaScriptsDir = configParser.get("anima-scripts",'anima-scripts-root')
 animaExtraDataDir = configParser.get("anima-scripts",'extra-data-root')
 sys.path.append(animaScriptsDir)
 
-def process(flairImage, t1Image, t2Image, maskImage, cImage, outputFolder, nbThreads, training):
+def process(flairImage, t1Image, t2Image, maskImage, cImage, outputFolder, nbThreads, training, skipPreprocessing=False):
 
     tmpFolder=outputFolder
 
     #--------------------------------------- First perform additional preprocessing
-    print('Starting additional preprocessing of data')
-    preproc.music_lesion_additional_preprocessing(animaDir, animaExtraDataDir, tmpFolder, t1Image, t2Image, flairImage, maskImage, nbThreads, cImage, not training)
+    if not skipPreprocessing:
+        print('Starting additional preprocessing of data')
+        preproc.music_lesion_additional_preprocessing(animaDir, animaExtraDataDir, tmpFolder, t1Image, t2Image, flairImage, maskImage, nbThreads, cImage, not training)
 
     if not training:
         #----------------------------------------- Then run core process over up images

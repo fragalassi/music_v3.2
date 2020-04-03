@@ -11,19 +11,21 @@ import animaMusicLesionTrainModel_v3 as trainModel
 
 # Find lesions or train the model with the given dataset
 #
-# usage: main.py [-h] -d DATA [-t TRAIN] [-p PREPROCESS] [-n NBTHREADS]
+# usage: main.py [-h] -d DATA [-t TRAIN] [-e] [-p] [-n NBTHREADS]
 
 # Compute MS lesion segmentation using a cascaded CNN.
 
 # optional arguments:
 #   -h, --help            show this help message and exit
-#   -d DATA, --data DATA  Path to the data description file (.json). See createDataDescription.py to create the description file.
+#   -d DATA, --data DATA  Path to the data description file (.json), see createDataDescription.py to create the description file.
 #   -t TRAIN, --train TRAIN
-#                         Train the model
-#   -p PREPROCESS, --preprocess PREPROCESS
-#                         Preprocess the data with anima tools.
+#                         Train the model.
+#   -e, --skip-exam-preparation
+#                         Skip the exam preparation (registration, mask, NL means, N4 bias correction).
+#   -p, --skip-preprocessing
+#                         Skip the preprocessing (mask and Nyul strandardization from uspio Atlas and resampling).
 #   -n NBTHREADS, --nbThreads NBTHREADS
-#                         Number of execution threads (default: 0 = all cores)
+#                         Number of execution threads (default: 0 = all cores).
 
 parser = argparse.ArgumentParser(
     prog='main.py',
@@ -32,14 +34,16 @@ parser = argparse.ArgumentParser(
 
 parser.add_argument('-d', '--data', required=True, help='Path to the data description file (.json), see createDataDescription.py to create the description file.')
 parser.add_argument('-t', '--train', required=False, default=False, type=bool, help='Train the model.')
-parser.add_argument('-p', '--preprocess', required=False, default=True, type=bool, help='Preprocess the data with anima tools.')
+parser.add_argument('-e', '--skipExamPreparation', action='store_true', help='Skip the exam preparation (registration, mask, NL means, N4 bias correction). Note: the exam images must be named as prepared by the examPreparation script. Use this if you already prepared your images, or name your images as if they were prepared but keep the original image names in the .json data description file.')
+parser.add_argument('-p', '--skipPreprocessing', action='store_true', help='Skip the preprocessing (mask and Nyul strandardization from uspio Atlas and resampling). Same note as for the skip exam preparation option.')
 parser.add_argument('-n', '--nbThreads', required=False, type=int, help='Number of execution threads (default: 0 = all cores).', default=0)
 
 args = parser.parse_args()
 
 train = args.train
 dataFile = args.data
-preprocessData = args.preprocess
+skipExamPreparation = args.skipExamPreparation
+skipPreprocessing = args.skipPreprocessing
 nbThreads = str(args.nbThreads)
 
 dataName = 'training' if train else 'testing'
@@ -66,18 +70,18 @@ with open(dataFile, 'r', encoding='utf-8') as f:
         label = patient['label']
 
         # Preprocess the data (if necessary)
-        if preprocessData:
+        if not skipExamPreparation:
             examPreparation.process(reference=flair, flair=flair, t1=t1, t2=t2, outputFolder=output)
             
-            flairPrefix = os.path.basename(flair)[:-len(fileExtension)]
-            mask = os.path.join(output, flairPrefix + '_brainMask.nrrd')
-            flair = os.path.join(output, flairPrefix + '_preprocessed.nrrd')
-            t1 = os.path.join(output, os.path.basename(t1)[:-len(fileExtension)] + '_preprocessed.nrrd')
-            t2 = os.path.join(output, os.path.basename(t2)[:-len(fileExtension)] + '_preprocessed.nrrd')
-        
+        flairPrefix = os.path.basename(flair)[:-len(fileExtension)]
+        mask = os.path.join(output, flairPrefix + '_brainMask.nrrd')
+        flair = os.path.join(output, flairPrefix + '_preprocessed.nrrd')
+        t1 = os.path.join(output, os.path.basename(t1)[:-len(fileExtension)] + '_preprocessed.nrrd')
+        t2 = os.path.join(output, os.path.basename(t2)[:-len(fileExtension)] + '_preprocessed.nrrd')
+    
         print("  Process...")
         # Compute the segmentation
-        lesionSegmentation.process(flair, t1, t2, mask, label, output, nbThreads, train)
+        lesionSegmentation.process(flair, t1, t2, mask, label, output, nbThreads, train, skipPreprocessing)
 
     # Train the model (if necessary)
     if train:
