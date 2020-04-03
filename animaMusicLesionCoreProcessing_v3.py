@@ -10,10 +10,10 @@ def music_lesion_core_processing(animaExtraDataDir,t1Image,t2Image,flairImage,mo
     model_1 = dict()
     model_2 = dict()
 
-    model_1['net'] = load_model(os.path.join("ms_lesion_models", modelName + "_1.h5"), custom_objects=custom_objects)
-    model_2['net'] = load_model(os.path.join("ms_lesion_models", modelName + "_2.h5"), custom_objects=custom_objects)
-    model_1['net'].load_weights(os.path.join("ms_lesion_models", modelName + "_weights_1.h5"), by_name=True)
-    model_2['net'].load_weights(os.path.join("ms_lesion_models", modelName + "_weights_2.h5"), by_name=True)
+    model_1['net'] = load_model(os.path.join(animaExtraDataDir, "ms_lesion_models", modelName + "_1.h5"), custom_objects=custom_objects)
+    model_2['net'] = load_model(os.path.join(animaExtraDataDir, "ms_lesion_models", modelName + "_2.h5"), custom_objects=custom_objects)
+    model_1['net'].load_weights(os.path.join(animaExtraDataDir, "ms_lesion_models", modelName + "_weights_1.h5"), by_name=True)
+    model_2['net'].load_weights(os.path.join(animaExtraDataDir, "ms_lesion_models", modelName + "_weights_2.h5"), by_name=True)
     
     model = [model_1, model_2]
 
