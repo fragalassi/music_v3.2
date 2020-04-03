@@ -62,7 +62,6 @@ def process(flairImage, t1Image, t2Image, maskImage, cImage, outputFolder, nbThr
         atlasWMImage = os.path.join(tmpFolder, "ATLAS-wm_masked-reg.nrrd")
         atlasGMImage = os.path.join(tmpFolder, "ATLAS-gm_masked-reg.nrrd")
         atlasCSFImage = os.path.join(tmpFolder, "ATLAS-csf_masked-reg.nrrd")
-        flairImage = args.flair
         cnnImage = os.path.join(tmpFolder, modelName, modelName + "_prob_1.nii.gz")
 
         outputImage = os.path.join(tmpFolder, modelName, modelName + "_segm.nii.gz")
