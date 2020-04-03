@@ -33,7 +33,7 @@ parser = argparse.ArgumentParser(
     description='Compute MS lesion segmentation using a cascaded CNN.')
 
 parser.add_argument('-d', '--data', required=True, help='Path to the data description file (.json), see createDataDescription.py to create the description file.')
-parser.add_argument('-t', '--train', action='store_false', help='Train the model.')
+parser.add_argument('-t', '--train', action='store_true', help='Train the model.')
 parser.add_argument('-e', '--skipExamPreparation', action='store_true', help='Skip the exam preparation (registration, mask, NL means, N4 bias correction). Note: the exam images must be named as prepared by the examPreparation script. Use this if you already prepared your images, or name your images as if they were prepared but keep the original image names in the .json data description file.')
 parser.add_argument('-p', '--skipPreprocessing', action='store_true', help='Skip the preprocessing (mask and Nyul strandardization from uspio Atlas and resampling). Same note as for the skip exam preparation option.')
 parser.add_argument('-n', '--nbThreads', required=False, type=int, help='Number of execution threads (default: 0 = all cores).', default=0)

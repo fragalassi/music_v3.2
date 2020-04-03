@@ -17,7 +17,7 @@ parser.add_argument('-m', '--maskImage',required=True,help='path to the MS patie
 parser.add_argument('-o', '--outputFolder',required=True,help='path to output folder')
 parser.add_argument('-n', '--nbThreads',required=False,type=int,help='Number of execution threads (default: 0 = all cores)',default=0)
 parser.add_argument('-c','--consensus',required=False,help='path to consensus image')
-parser.add_argument('-p', '--training',action='store_false',help='For training: just execute the preprocessing, ignore core processing and post processing (default: False)')
+parser.add_argument('-p', '--training',action='store_true',help='For training: just execute the preprocessing, ignore core processing and post processing (default: False)')
 
 args=parser.parse_args()
 
