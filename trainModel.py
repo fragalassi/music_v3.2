@@ -10,7 +10,7 @@ parser = argparse.ArgumentParser(
     description='Train the cascaded CNN to segment MS Lesions.')
 
 parser.add_argument('-i', '--inputDirectory', required=True, help='Training data: the directory containing all training subjects.')
-parser.add_argument('-m', '--model', default="t1_flair_1608_ce_noNorm_upsampleAnima_rev1", help='Model name.')
+parser.add_argument('-m', '--model', default="t1_t2_flair_ce_upsampleAnima", help='Model name.')
 parser.add_argument('-f', '--flair', default="FLAIR_masked_normed_nyul_upsampleAnima.nii.gz", help='FLAIR file name.')
 parser.add_argument('-t', '--t1', default="T1_masked_normed_nyul_upsampleAnima.nii.gz", help='T1 file name.')
 parser.add_argument('-T', '--t2', default="T2_masked_normed_nyul_upsampleAnima.nii.gz", help='T2 file name.')

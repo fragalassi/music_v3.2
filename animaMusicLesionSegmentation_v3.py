@@ -28,7 +28,7 @@ animaScriptsDir = configParser.get("anima-scripts",'anima-scripts-root')
 animaExtraDataDir = configParser.get("anima-scripts",'extra-data-root')
 sys.path.append(animaScriptsDir)
 
-def process(flairImage, t1Image, t2Image, maskImage, cImage, outputFolder, nbThreads, training, skipPreprocessing=False):
+def process(flairImage, t1Image, t2Image, maskImage, cImage, outputFolder, nbThreads, training, skipPreprocessing=False, modelName="t1_t2_flair_ce_upsampleAnima"):
 
     tmpFolder=outputFolder
 
@@ -40,7 +40,6 @@ def process(flairImage, t1Image, t2Image, maskImage, cImage, outputFolder, nbThr
     if not training:
         #----------------------------------------- Then run core process over up images
         print('Done with additional preprocessing, starting core processing of data')
-        modelName = "t1_flair_1608_ce_noNorm_upsampleAnima_rev1"
         if not(os.path.isdir(os.path.join(tmpFolder, modelName))):
             os.makedirs(os.path.join(tmpFolder, modelName))
         
@@ -49,11 +48,11 @@ def process(flairImage, t1Image, t2Image, maskImage, cImage, outputFolder, nbThr
         # t2Image = os.path.join(tmpFolder, "T2_masked_upsampleAnima.nii.gz")
         # flairImage = os.path.join(tmpFolder, "FLAIR_masked_upsampleAnima.nii.gz")
         # Use normalized images
-        t1Image = os.path.join(tmpFolder, "T1_masked_normed_nyul_upsampleAnima.nii.gz")
-        t2Image = os.path.join(tmpFolder, "T2_masked_normed_nyul_upsampleAnima.nii.gz")
-        flairImage = os.path.join(tmpFolder, "FLAIR_masked_normed_nyul_upsampleAnima.nii.gz")
+        preprocessedT1Image = os.path.join(tmpFolder, "T1_masked_normed_nyul_upsampleAnima.nii.gz")
+        preprocessedT2Image = os.path.join(tmpFolder, "T2_masked_normed_nyul_upsampleAnima.nii.gz")
+        preprocessedFlairImage = os.path.join(tmpFolder, "FLAIR_masked_normed_nyul_upsampleAnima.nii.gz")
         
-        coreproc.music_lesion_core_processing(animaExtraDataDir, t1Image, t2Image, flairImage, modelName, tmpFolder)
+        coreproc.music_lesion_core_processing(animaExtraDataDir, preprocessedT1Image, preprocessedT2Image, preprocessedFlairImage, modelName, tmpFolder)
 
         #------------------------------------------------------ Now run post-processing
         print('Done with core processing, starting post processing of data')
@@ -63,7 +62,7 @@ def process(flairImage, t1Image, t2Image, maskImage, cImage, outputFolder, nbThr
         atlasGMImage = os.path.join(tmpFolder, "ATLAS-gm_masked-reg.nrrd")
         atlasCSFImage = os.path.join(tmpFolder, "ATLAS-csf_masked-reg.nrrd")
         cnnImage = os.path.join(tmpFolder, modelName, modelName + "_prob_1.nii.gz")
-
+        
         outputImage = os.path.join(tmpFolder, modelName, modelName + "_segm.nii.gz")
         postproc.music_lesion_post_processing(animaDir, animaExtraDataDir, tmpFolder, outputImage, cnnImage, flairImage,
                                             atlasWMImage, atlasGMImage, atlasCSFImage, maskImage, nbThreads)

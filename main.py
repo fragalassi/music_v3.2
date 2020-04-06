@@ -37,6 +37,7 @@ parser.add_argument('-t', '--train', action='store_true', help='Train the model.
 parser.add_argument('-e', '--skipExamPreparation', action='store_true', help='Skip the exam preparation (registration, mask, NL means, N4 bias correction). Note: the exam images must be named as prepared by the examPreparation script. Use this if you already prepared your images, or name your images as if they were prepared but keep the original image names in the .json data description file.')
 parser.add_argument('-p', '--skipPreprocessing', action='store_true', help='Skip the preprocessing (mask and Nyul strandardization from uspio Atlas and resampling). Same note as for the skip exam preparation option.')
 parser.add_argument('-n', '--nbThreads', required=False, type=int, help='Number of execution threads (default: 0 = all cores).', default=0)
+parser.add_argument('-m', '--model', default="t1_t2_flair_ce_upsampleAnima", help='Model name.')
 
 args = parser.parse_args()
 
@@ -44,6 +45,7 @@ train = args.train
 dataFile = args.data
 skipExamPreparation = args.skipExamPreparation
 skipPreprocessing = args.skipPreprocessing
+modelName = args.model
 nbThreads = str(args.nbThreads)
 
 dataName = 'training' if train else 'testing'
@@ -81,9 +83,9 @@ with open(dataFile, 'r', encoding='utf-8') as f:
     
         print("  Process...")
         # Compute the segmentation
-        lesionSegmentation.process(flair, t1, t2, mask, label, output, nbThreads, train, skipPreprocessing)
+        lesionSegmentation.process(flair, t1, t2, mask, label, output, nbThreads, train, skipPreprocessing, modelName)
 
     # Train the model (if necessary)
     if train:
         print("Train...")
-        trainModel.music_lesion_train_model(outputDirectory, t1Image="T1_masked_normed_nyul_upsampleAnima.nii.gz", t2Image="T2_masked_normed_nyul_upsampleAnima.nii.gz", flairImage="FLAIR_masked_normed_nyul_upsampleAnima.nii.gz", cImage="Consensus_upsampleAnima.nii.gz", modelName="t1_flair_1608_ce_noNorm_upsampleAnima_rev1")
+        trainModel.music_lesion_train_model(outputDirectory, t1Image="T1_masked_normed_nyul_upsampleAnima.nii.gz", t2Image="T2_masked_normed_nyul_upsampleAnima.nii.gz", flairImage="FLAIR_masked_normed_nyul_upsampleAnima.nii.gz", cImage="Consensus_upsampleAnima.nii.gz", modelName=modelName)
