@@ -73,8 +73,6 @@ def music_lesion_train_model(train_subjects, t1Image="T1_masked_normed_nyul_upsa
                        for f in list_of_scans}
     train_y_data = {f: os.path.join(options['train_folder'], f, y_names[0]) for f in list_of_scans}
     
-    import pdb; pdb.set_trace()
-    
     # initialize model
     model = cascade_model(options)
     # train model
