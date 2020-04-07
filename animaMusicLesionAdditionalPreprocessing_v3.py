@@ -109,6 +109,7 @@ def music_lesion_additional_preprocessing(animaDir,animaExtraDataDir,tmpFolder,t
 
     if cImage:
         command=[animaMaskImage, "-i", cImage, "-m", os.path.join(tmpFolder,"mask-er.nrrd"), "-o", os.path.join(tmpFolder, "Consensus_masked.nrrd")]
+        call(command)
 
     if convertToNifti:
         command=[animaConvertImage, "-i", os.path.join(tmpFolder, "FLAIR_masked.nrrd"), "-o", os.path.join(tmpFolder, "FLAIR_masked.nii.gz")]
