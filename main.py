@@ -39,6 +39,7 @@ parser.add_argument('-e', '--skipExamPreparation', action='store_true', help='Sk
 parser.add_argument('-p', '--skipPreprocessing', action='store_true', help='Skip the preprocessing (mask and Nyul strandardization from uspio Atlas and resampling). Same note as for the skip exam preparation option.')
 parser.add_argument('-n', '--nbThreads', required=False, type=int, help='Number of execution threads (default: 0 = all cores).', default=0)
 parser.add_argument('-m', '--model', default="t1_flair_1608_ce_noDenoising_noNorm_upsampleAnima_rev1", help='Model name.')
+parser.add_argument('-a', '--all', action='store_true', help='Train the model with training data, then test it with testing data.')
 
 args = parser.parse_args()
 
@@ -48,6 +49,7 @@ skipExamPreparation = args.skipExamPreparation
 skipPreprocessing = args.skipPreprocessing
 useNyulNormalization = args.normedNyul
 modelName = args.model
+trainAndTest = args.all
 nbThreads = str(args.nbThreads)
 
 dataName = 'training' if train else 'testing'
@@ -58,42 +60,48 @@ with open(dataFile, 'r', encoding='utf-8') as f:
     outputDirectory = json_dict['output-directory']
     fileExtension = json_dict['file-extension']
 
-    # For all patient in the target dataset (training set or testing set)
-    for patient in json_dict[dataName]:
+    dataNames = ['training', 'testing'] if trainAndTest else [dataName]
 
-        output = patient['output']
-        pathlib.Path(output).mkdir(parents=True, exist_ok=True) 
+    for dataName in dataNames:
+        
+        train = dataName == 'training'
 
-        print("Patient: " + output.replace(outputDirectory, '', 1))
+        # For all patient in the target dataset (training set or testing set)
+        for patient in json_dict[dataName]:
 
-        flair = patient['flair']
-        t1 = patient['t1']
-        t2 = patient['t2']
-        mask = patient['mask']      # this will be overriden if preprocessing: 
-                                    #   the mask will be computed again from the flair
-        label = patient['label']
+            output = patient['output']
+            pathlib.Path(output).mkdir(parents=True, exist_ok=True) 
 
-        # Preprocess the data (if necessary)
-        if not skipExamPreparation:
-            examPreparation.process(reference=flair, flair=flair, t1=t1, t2=t2, outputFolder=output)
-            
-        flairPrefix = os.path.basename(flair)[:-len(fileExtension)]
-        mask = os.path.join(output, flairPrefix + '_brainMask.nrrd')
-        flair = os.path.join(output, flairPrefix + '_preprocessed.nrrd')
-        t1 = os.path.join(output, os.path.basename(t1)[:-len(fileExtension)] + '_preprocessed.nrrd')
-        t2 = os.path.join(output, os.path.basename(t2)[:-len(fileExtension)] + '_preprocessed.nrrd')
+            print("Patient: " + output.replace(outputDirectory, '', 1))
+
+            flair = patient['flair']
+            t1 = patient['t1']
+            t2 = patient['t2']
+            mask = patient['mask']      # this will be overriden if preprocessing: 
+                                        #   the mask will be computed again from the flair
+            label = patient['label']
+
+            # Preprocess the data (if necessary)
+            if not skipExamPreparation:
+                examPreparation.process(reference=flair, flair=flair, t1=t1, t2=t2, outputFolder=output)
+                
+            flairPrefix = os.path.basename(flair)[:-len(fileExtension)]
+            mask = os.path.join(output, flairPrefix + '_brainMask.nrrd')
+            flair = os.path.join(output, flairPrefix + '_preprocessed.nrrd')
+            t1 = os.path.join(output, os.path.basename(t1)[:-len(fileExtension)] + '_preprocessed.nrrd')
+            t2 = os.path.join(output, os.path.basename(t2)[:-len(fileExtension)] + '_preprocessed.nrrd')
+        
+            print("  Process...")
+            # Compute the segmentation
+            lesionSegmentation.process(flair, t1, t2, mask, label, output, nbThreads, train, skipPreprocessing, modelName)
     
-        print("  Process...")
-        # Compute the segmentation
-        lesionSegmentation.process(flair, t1, t2, mask, label, output, nbThreads, train, skipPreprocessing, modelName)
-
-    # Train the model (if necessary)
-    if train:
-        print("Train...")
-        nyulNorm = '_normed_nyul' if useNyulNormalization else ''
-        t1 = 'T1_masked' + nyulNorm + '_upsampleAnima.nii.gz'
-        t2 = 'T2_masked' + nyulNorm + '_upsampleAnima.nii.gz'
-        flair = 'FLAIR_masked' + nyulNorm + '_upsampleAnima.nii.gz'
-        consensus = "Consensus_upsampleAnima.nii.gz"
-        trainingIds = [ patient['id'] for patient in json_dict[dataName] ]
-        trainModel.music_lesion_train_model(outputDirectory, t1Image=t1, t2Image=t2, flairImage=flair, cImage=consensus, modelName=modelName, trainingIds=trainingIds)
+        # Train the model (if necessary)
+        if train:
+            print("Train...")
+            nyulNorm = '_normed_nyul' if useNyulNormalization else ''
+            t1 = 'T1_masked' + nyulNorm + '_upsampleAnima.nii.gz'
+            t2 = 'T2_masked' + nyulNorm + '_upsampleAnima.nii.gz'
+            flair = 'FLAIR_masked' + nyulNorm + '_upsampleAnima.nii.gz'
+            consensus = "Consensus_upsampleAnima.nii.gz"
+            trainingIds = [ patient['id'] for patient in json_dict[dataName] ]
+            trainModel.music_lesion_train_model(outputDirectory, t1Image=t1, t2Image=t2, flairImage=flair, cImage=consensus, modelName=modelName, trainingIds=trainingIds)
