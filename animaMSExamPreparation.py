@@ -85,12 +85,13 @@ def process(reference, flair, t1, t1_gd="", t2="", outputFolder=tempfile.gettemp
         biasCorrectionCommand = [animaN4BiasCorrection, "-i", registeredDataFile, "-o", unbiasedSecondImage, "-B", "0.3"]
         call(biasCorrectionCommand)
 
-        nlmSecondImage = os.path.join(tmpFolder, "SecondImage_unbiased_nlm.nrrd")
-        nlmCommand = [animaNLMeans, "-i", unbiasedSecondImage, "-o", nlmSecondImage, "-n", "3"]
-        call(nlmCommand)
+        # nlmSecondImage = os.path.join(tmpFolder, "SecondImage_unbiased_nlm.nrrd")
+        # nlmCommand = [animaNLMeans, "-i", unbiasedSecondImage, "-o", nlmSecondImage, "-n", "3"]
+        # call(nlmCommand)
 
         outputPreprocessedFile = os.path.join(tmpFolder, inputPrefix + "_preprocessed.nrrd")
-        secondMaskCommand = [animaMaskImage, "-i", nlmSecondImage, "-m", brainMask, "-o", outputPreprocessedFile]
+        # secondMaskCommand = [animaMaskImage, "-i", nlmSecondImage, "-m", brainMask, "-o", outputPreprocessedFile]
+        secondMaskCommand = [animaMaskImage, "-i", unbiasedSecondImage, "-m", brainMask, "-o", outputPreprocessedFile]
         call(secondMaskCommand)
 
     for image in images:
