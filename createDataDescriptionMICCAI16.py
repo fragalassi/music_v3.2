@@ -63,7 +63,7 @@ for setName in os.listdir(sourceDataPath):
             #           it cannot be outputDirectory/patientID/TemporalPoint/outputFiles.nii.gz
             patientOutputDirectory = os.path.join(outputDirectory, patientName)
 
-            patientSet.append({'flair': flair, 't1': t1, 't1gado': t1gado, 'dp': dp, 't2': t2, 'output': patientOutputDirectory, 'mask': mask, 'label': label })
+            patientSet.append({'flair': flair, 't1': t1, 't1gado': t1gado, 'dp': dp, 't2': t2, 'output': patientOutputDirectory, 'mask': mask, 'label': label, 'id': patientName })
 
 json_dict['training'] = trainingSet
 json_dict['testing'] = testingSet

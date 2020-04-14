@@ -22,7 +22,7 @@ animaExtraDataDir = configParser.get("anima-scripts", 'extra-data-root')
 
 # Train the model
 
-def music_lesion_train_model(train_subjects, t1Image="T1_masked_normed_nyul_upsampleAnima.nii.gz", t2Image="T2_masked_normed_nyul_upsampleAnima.nii.gz", flairImage="FLAIR_masked_normed_nyul_upsampleAnima.nii.gz", cImage="Consensus_upsampleAnima.nii.gz", modelName="t1_flair_1608_ce_noNorm_upsampleAnima_rev1"):
+def music_lesion_train_model(train_subjects, t1Image="T1_masked_normed_nyul_upsampleAnima.nii.gz", t2Image="T2_masked_normed_nyul_upsampleAnima.nii.gz", flairImage="FLAIR_masked_normed_nyul_upsampleAnima.nii.gz", cImage="Consensus_upsampleAnima.nii.gz", modelName="t1_flair_1608_ce_noNorm_upsampleAnima_rev1", trainingIds=None):
     
     options = {}
     
@@ -58,12 +58,16 @@ def music_lesion_train_model(train_subjects, t1Image="T1_masked_normed_nyul_upsa
     options['y_names'] = [cImage]
 
     list_of_scans = []
-    for folder in os.listdir(options['train_folder']):
-        if (os.path.exists(os.path.join(options['train_folder'], folder, t1Image)) and 
-            # os.path.exists(os.path.join(options['train_folder'], folder, t2Image)) and
-            os.path.exists(os.path.join(options['train_folder'], folder, flairImage)) and 
-            os.path.exists(os.path.join(options['train_folder'], folder, cImage))) :
-            list_of_scans.append(folder)
+    if trainingIds is not None:
+        list_of_scans = trainingIds
+    else:
+        for folder in os.listdir(options['train_folder']):
+            if (os.path.exists(os.path.join(options['train_folder'], folder, t1Image)) and 
+                # os.path.exists(os.path.join(options['train_folder'], folder, t2Image)) and
+                os.path.exists(os.path.join(options['train_folder'], folder, flairImage)) and 
+                os.path.exists(os.path.join(options['train_folder'], folder, cImage))) :
+                list_of_scans.append(folder)
+    
     list_of_scans.sort()
 
     modalities = options['modalities']

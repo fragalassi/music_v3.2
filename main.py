@@ -95,4 +95,5 @@ with open(dataFile, 'r', encoding='utf-8') as f:
         t2 = 'T2_masked' + nyulNorm + '_upsampleAnima.nii.gz'
         flair = 'FLAIR_masked' + nyulNorm + '_upsampleAnima.nii.gz'
         consensus = "Consensus_upsampleAnima.nii.gz"
-        trainModel.music_lesion_train_model(outputDirectory, t1Image=t1, t2Image=t2, flairImage=flair, cImage=consensus, modelName=modelName)
+        trainingIds = [ patient['id'] for patient in json_dict[dataName] ]
+        trainModel.music_lesion_train_model(outputDirectory, t1Image=t1, t2Image=t2, flairImage=flair, cImage=consensus, modelName=modelName, trainingIds=trainingIds)
