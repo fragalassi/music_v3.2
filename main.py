@@ -34,6 +34,7 @@ parser = argparse.ArgumentParser(
 
 parser.add_argument('-d', '--data', required=True, help='Path to the data description file (.json), see createDataDescription.py to create the description file.')
 parser.add_argument('-t', '--train', action='store_true', help='Train the model.')
+parser.add_argument('-y', '--normedNyul', action='store_true', help='Use nyul normalization.')
 parser.add_argument('-e', '--skipExamPreparation', action='store_true', help='Skip the exam preparation (registration, mask, NL means, N4 bias correction). Note: the exam images must be named as prepared by the examPreparation script. Use this if you already prepared your images, or name your images as if they were prepared but keep the original image names in the .json data description file.')
 parser.add_argument('-p', '--skipPreprocessing', action='store_true', help='Skip the preprocessing (mask and Nyul strandardization from uspio Atlas and resampling). Same note as for the skip exam preparation option.')
 parser.add_argument('-n', '--nbThreads', required=False, type=int, help='Number of execution threads (default: 0 = all cores).', default=0)
@@ -45,6 +46,7 @@ train = args.train
 dataFile = args.data
 skipExamPreparation = args.skipExamPreparation
 skipPreprocessing = args.skipPreprocessing
+useNyulNormalization = args.normedNyul
 modelName = args.model
 nbThreads = str(args.nbThreads)
 
@@ -88,4 +90,9 @@ with open(dataFile, 'r', encoding='utf-8') as f:
     # Train the model (if necessary)
     if train:
         print("Train...")
-        trainModel.music_lesion_train_model(outputDirectory, t1Image="T1_masked_normed_nyul_upsampleAnima.nii.gz", t2Image="T2_masked_normed_nyul_upsampleAnima.nii.gz", flairImage="FLAIR_masked_normed_nyul_upsampleAnima.nii.gz", cImage="Consensus_upsampleAnima.nii.gz", modelName=modelName)
+        nyulNorm = '_normed_nyul' if useNyulNormalization else ''
+        t1 = 'T1_masked' + nyulNorm + '_upsampleAnima.nii.gz'
+        t2 = 'T2_masked' + nyulNorm + '_upsampleAnima.nii.gz'
+        flair = 'FLAIR_masked' + nyulNorm + '_upsampleAnima.nii.gz'
+        consensus = "Consensus_upsampleAnima.nii.gz"
+        trainModel.music_lesion_train_model(outputDirectory, t1Image=t1, t2Image=t2, flairImage=flair, cImage=consensus, modelName=modelName)
