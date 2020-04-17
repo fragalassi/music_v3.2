@@ -56,8 +56,9 @@ def music_lesion_additional_preprocessing(animaDir,animaExtraDataDir,tmpFolder,t
     command = [animaApplyTransformSerie,"-i",olivierAtlasMask,"-t", os.path.join(tmpFolder,"atlas_nl_tr.xml"),"-g", t1Image,"-o", os.path.join(tmpFolder,"mask.nrrd"),"-n","nearest","-p",nbThreads]
     call(command)
     # intersect mask
-    command = [animaMaskImage, "-i", maskImage, "-m",os.path.join(tmpFolder,"mask.nrrd"), "-o", os.path.join(tmpFolder,"mask.nrrd")]
-    call(command)
+    if maskImage:
+        command = [animaMaskImage, "-i", maskImage, "-m",os.path.join(tmpFolder,"mask.nrrd"), "-o", os.path.join(tmpFolder,"mask.nrrd")]
+        call(command)
 
     # register wm, gm, csf maps
     command = [animaApplyTransformSerie,"-i", os.path.join(olivierAtlasDir, "ATLAS-wm_masked.nrrd"),"-t", os.path.join(tmpFolder,"atlas_nl_tr.xml"),"-g", t1Image, "-o", os.path.join(tmpFolder,"ATLAS-wm_masked-reg.nrrd")]
@@ -87,12 +88,16 @@ def music_lesion_additional_preprocessing(animaDir,animaExtraDataDir,tmpFolder,t
     command = [animaApplyTransformSerie,"-i",os.path.join(uspioAtlasDir_FLAIR, "FLAIR_1.nrrd"),"-t", os.path.join(tmpFolder,"atlas_nl_tr.xml"),"-g", t1Image,"-o", os.path.join(tmpFolder,"FLAIR_1_reg.nrrd"),"-p",nbThreads]
     call(command)
     
-    # intersect control mask and patient mask  
-    command = [animaMaskImage, "-i", maskImage, "-m",os.path.join(tmpFolder,"brain-mask_intersected_reg.nrrd"), "-o", os.path.join(tmpFolder,"brain-mask_intersected_reg_inters.nrrd")]
-    call(command)
-    # erode brain mask (to avoid border lesions)
-    command = [animaMorphologicalOperations, "-i", os.path.join(tmpFolder, "brain-mask_intersected_reg_inters.nrrd"), "-o", os.path.join(tmpFolder, "mask-er.nrrd"), "-a", "er", "-r", "1.5"]
-    call(command)
+    if maskImage:
+        # intersect control mask and patient mask  
+        command = [animaMaskImage, "-i", maskImage, "-m",os.path.join(tmpFolder,"brain-mask_intersected_reg.nrrd"), "-o", os.path.join(tmpFolder,"brain-mask_intersected_reg_inters.nrrd")]
+        call(command)
+        # erode brain mask (to avoid border lesions)
+        command = [animaMorphologicalOperations, "-i", os.path.join(tmpFolder, "brain-mask_intersected_reg_inters.nrrd"), "-o", os.path.join(tmpFolder, "mask-er.nrrd"), "-a", "er", "-r", "1.5"]
+        call(command)
+    else:
+        command = [animaMorphologicalOperations, "-i", os.path.join(tmpFolder, "brain-mask_intersected_reg.nrrd"), "-o", os.path.join(tmpFolder, "mask-er.nrrd"), "-a", "er", "-r", "1.5"]
+        call(command)
     
     # apply mask 
     command=[animaMaskImage, "-i", os.path.join(tmpFolder,"FLAIR_1_reg.nrrd"), "-m", os.path.join(tmpFolder,"mask-er.nrrd"), "-o", os.path.join(tmpFolder, "FLAIR_1_reg_masked.nrrd")]
