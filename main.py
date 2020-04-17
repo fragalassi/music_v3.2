@@ -66,6 +66,8 @@ with open(dataFile, 'r', encoding='utf-8') as f:
         
         train = dataName == 'training'
 
+        useT2 = True
+
         # For all patient in the target dataset (training set or testing set)
         for patient in json_dict[dataName]:
 
@@ -76,20 +78,21 @@ with open(dataFile, 'r', encoding='utf-8') as f:
 
             flair = patient['flair']
             t1 = patient['t1']
-            t2 = patient['t2']
-            mask = patient['mask']      # this will be overriden if preprocessing: 
-                                        #   the mask will be computed again from the flair
-            label = patient['label']
+            t2 = patient['t2'] if 't2' in patient else None
+            useT2 = useT2 and t2 is not None
+            mask = patient['mask'] if 'mask' in patient else None       # this will be overriden if preprocessing: 
+                                                                        #   the mask will be computed again from the flair
+            label = patient['label'] if 'label' in patient else None
 
             # Preprocess the data (if necessary)
             if not skipExamPreparation:
                 examPreparation.process(reference=flair, flair=flair, t1=t1, t2=t2, outputFolder=output)
                 
             flairPrefix = os.path.basename(flair)[:-len(fileExtension)]
-            mask = os.path.join(output, flairPrefix + '_brainMask.nrrd')
+            mask = os.path.join(output, flairPrefix + '_brainMask.nrrd') if mask else None
             flair = os.path.join(output, flairPrefix + '_preprocessed.nrrd')
             t1 = os.path.join(output, os.path.basename(t1)[:-len(fileExtension)] + '_preprocessed.nrrd')
-            t2 = os.path.join(output, os.path.basename(t2)[:-len(fileExtension)] + '_preprocessed.nrrd')
+            t2 = os.path.join(output, os.path.basename(t2)[:-len(fileExtension)] + '_preprocessed.nrrd') if t2 else None
         
             print("  Process...")
             # Compute the segmentation
@@ -100,7 +103,7 @@ with open(dataFile, 'r', encoding='utf-8') as f:
             print("Train...")
             nyulNorm = '_normed_nyul' if useNyulNormalization else ''
             t1 = 'T1_masked' + nyulNorm + '_upsampleAnima.nii.gz'
-            t2 = 'T2_masked' + nyulNorm + '_upsampleAnima.nii.gz'
+            t2 = 'T2_masked' + nyulNorm + '_upsampleAnima.nii.gz' if useT2 else None
             flair = 'FLAIR_masked' + nyulNorm + '_upsampleAnima.nii.gz'
             consensus = "Consensus_upsampleAnima.nii.gz"
             trainingIds = [ patient['id'] for patient in json_dict[dataName] ]

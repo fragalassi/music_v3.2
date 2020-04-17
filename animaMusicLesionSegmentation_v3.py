@@ -49,7 +49,7 @@ def process(flairImage, t1Image, t2Image, maskImage, cImage, outputFolder, nbThr
         # flairImage = os.path.join(tmpFolder, "FLAIR_masked_upsampleAnima.nii.gz")
         # Use normalized images
         preprocessedT1Image = os.path.join(tmpFolder, "T1_masked_upsampleAnima.nii.gz")
-        preprocessedT2Image = os.path.join(tmpFolder, "T2_masked_upsampleAnima.nii.gz")
+        preprocessedT2Image = os.path.join(tmpFolder, "T2_masked_upsampleAnima.nii.gz") if t2Image else None
         preprocessedFlairImage = os.path.join(tmpFolder, "FLAIR_masked_upsampleAnima.nii.gz")
         
         coreproc.music_lesion_core_processing(animaExtraDataDir, preprocessedT1Image, preprocessedT2Image, preprocessedFlairImage, modelName, tmpFolder)

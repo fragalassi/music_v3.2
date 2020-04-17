@@ -36,7 +36,8 @@ def music_lesion_core_processing(animaExtraDataDir,t1Image,t2Image,flairImage,mo
     test_data = dict()
     test_data['Patient'] = dict()
     test_data['Patient']['T1'] = t1Image
-    test_data['Patient']['T2'] = t2Image
+    if t2Image:
+        test_data['Patient']['T2'] = t2Image
     test_data['Patient']['FLAIR'] = flairImage
 
     # First layer of CNN
