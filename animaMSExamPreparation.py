@@ -45,7 +45,7 @@ def process(reference, flair, t1, t1_gd="", t2="", outputFolder=tempfile.gettemp
     images = [flair, t1]
     if t1_gd != "":
         images.append(t1_gd)
-    if t2 != "":
+    if t2 is not None and t2 != "":
         images.append(t2)
 
     tmpFolder = outputFolder
