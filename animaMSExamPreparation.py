@@ -102,7 +102,7 @@ def process(reference, flair, t1, t1_gd="", t2="", outputFolder=tempfile.gettemp
             if os.path.isfile(inputPrefix + tempFileName):
                 shutil.move(inputPrefix + tempFileName, os.path.join(tmpFolder, os.path.basename(inputPrefix + tempFileName)))
     
-    if os.path.isfile(brainMask):
+    if os.path.isfile(brainMask) and not os.path.exists(os.path.join(tmpFolder, brainMask)):
         shutil.move(brainMask, tmpFolder)
 
     #shutil.rmtree(tmpFolder)
