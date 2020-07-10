@@ -26,8 +26,10 @@ import pathlib
 # Thus, the preprocessing output directory of each patient must be in the "output-directory" defined above,
 # so that the core processing find them.
 
-sourceDataPath = '/data/MICCAI16/'
-outputDirectory = '/data/output/'
+# sourceDataPath = '/data/MICCAI16/'
+# outputDirectory = '/data/output/'
+sourceDataPath = '/home/amasson/MICCAI16/'
+outputDirectory = '/home/amasson/MICCAI16-output/'
 
 json_dict = {}
 json_dict['name'] = "MICCAI16"
@@ -61,7 +63,8 @@ for setName in os.listdir(sourceDataPath):
             
             # Warning: patient output directory must be a subfolder of outputDirectory: outputDirectory/patientID/outputFiles.nii.gz
             #           it cannot be outputDirectory/patientID/TemporalPoint/outputFiles.nii.gz
-            patientOutputDirectory = os.path.join(outputDirectory, patientName)
+            # patientOutputDirectory = os.path.join(outputDirectory, patientName)
+            patientOutputDirectory = patientName
 
             patientSet.append({'flair': flair, 't1': t1, 't1gado': t1gado, 'dp': dp, 't2': t2, 'output': patientOutputDirectory, 'mask': mask, 'label': label, 'id': patientName })
 

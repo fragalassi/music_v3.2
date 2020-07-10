@@ -70,8 +70,11 @@ with open(dataFile, 'r', encoding='utf-8') as f:
 
         # For all patient in the target dataset (training set or testing set)
         for patient in json_dict[dataName]:
-
+            
             output = patient['output']
+            if not output.startwith(outputDirectory):
+                output = os.path.join(outputDirectory, output)
+            
             pathlib.Path(output).mkdir(parents=True, exist_ok=True) 
 
             print("Patient: " + output.replace(outputDirectory, '', 1))
@@ -106,5 +109,5 @@ with open(dataFile, 'r', encoding='utf-8') as f:
             t2 = 'T2_masked' + nyulNorm + '_upsampleAnima.nii.gz' if useT2 else None
             flair = 'FLAIR_masked' + nyulNorm + '_upsampleAnima.nii.gz'
             consensus = "Consensus_upsampleAnima.nii.gz"
-            trainingIds = [ patient['id'] for patient in json_dict[dataName] ]
+            trainingIds = [ pathlib.Path(patient['output']).name for patient in json_dict[dataName] ]
             trainModel.music_lesion_train_model(outputDirectory, t1Image=t1, t2Image=t2, flairImage=flair, cImage=consensus, modelName=modelName, trainingIds=trainingIds)

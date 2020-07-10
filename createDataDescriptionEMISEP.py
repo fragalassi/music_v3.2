@@ -28,11 +28,15 @@ import pathlib
 
 # /data/EMISEP_Brain_Segmentation/montpellier_20170112_07/brain/M0/flair/flair.nii.gz
 
-sourceDataPath = '/data/EMISEP_Brain_Segmentation/'
-outputDirectory = '/data/output/'
+sourceDataPath = '/local/EMISEP_Brain_Segmentation/new_lesions_same_space/'
+outputDirectory = '/local/EMISEP_Brain_Segmentation/preprocessed_music/'
+# labelsDirectory = '/local/EMISEP_Brain_Segmentation/preprocessed_on_t0nl/'
 
-trainingIds = [6, 48, 73, 67, 59, 27, 58, 24, 13, 28, 41, 42, 38, 45, 17, 1, 36, 51, 7, 20, 21, 60, 62]
-testingIds = [26, 23, 4, 49, 46, 72, 63, 64, 5, 10, 12, 16, 19, 30, 33, 34, 50, 74]
+# trainingIds = [6, 48, 73, 67, 59, 27, 58, 24, 13, 28, 41, 42, 38, 45, 17, 1, 36, 51, 7, 20, 21, 60, 62]
+# testingIds = [26, 23, 4, 49, 46, 72, 63, 64, 5, 10, 12, 16, 19, 30, 33, 34, 50, 74]
+
+trainingIds = [7, 59, 1, 4, 6, 10, 16, 19, 28, 33, 36, 42, 45, 48, 49, 51, 58, 60, 63, 64, 67, 72, 73, 74]
+testingIds = [13, 17, 38, 5, 12, 20, 21, 23, 24, 26, 27, 30, 34, 41, 46, 50, 62]
 
 json_dict = {}
 json_dict['name'] = "EMISEP"
@@ -57,18 +61,19 @@ for patientName in os.listdir(sourceDataPath):
         for temporalPoint in ['M0', 'M24']:
 
             # Create the file paths and add them to the set
-            flair = os.path.join(sourceDataPath, patientName, 'brain', temporalPoint, 'flair', 'flair.nii.gz')
+            flair = os.path.join(sourceDataPath, patientName, 'brain', temporalPoint, 'flair', 'flair.nii.gz' if temporalPoint == 'M0' else 'flair_on_M0.nii.gz')
             t1 = os.path.join(sourceDataPath, patientName, 'brain', temporalPoint, 't1', 't1.nii.gz')
             t2 = os.path.join(sourceDataPath, patientName, 'brain', temporalPoint, 't2', 't2.nii.gz')
-            mask = os.path.join(sourceDataPath, patientName, 'brain', temporalPoint, 'flair', 'flair_noskull.nii.gz')
-            consensus = os.path.join(sourceDataPath, patientName, 'brain', temporalPoint, 'flair', 'flair_lesion_manual.nii.gz')
+            # mask = os.path.join(sourceDataPath, patientName, 'brain', temporalPoint, 'flair', 'flair_noskull.nii.gz')
+            consensus = os.path.join(sourceDataPath, patientName, 'brain', temporalPoint, 'flair', 'lesions.nii.gz')
 
             # Warning: patient output directory must be a subfolder of outputDirectory: outputDirectory/patientID/outputFiles.nii.gz
             #           it cannot be outputDirectory/patientID/TemporalPoint/outputFiles.nii.gz
             # patientOutputDirectory = os.path.join(outputDirectory, patientName + '_' + temporalPoint)
             patientOutputDirectory = patientName + '_' + temporalPoint
 
-            patientSet.append({'flair': flair, 't1': t1, 't2': t2, 'output': patientOutputDirectory, 'mask': mask, 'label': consensus, 'id': patientName })
+            # patientSet.append({'flair': flair, 't1': t1, 't2': t2, 'output': patientOutputDirectory, 'mask': mask, 'label': consensus, 'id': patientName })
+            patientSet.append({'flair': flair, 't1': t1, 't2': t2, 'output': patientOutputDirectory, 'label': consensus, 'id': patientName })
 
 json_dict['training'] = trainingSet
 json_dict['testing'] = testingSet
