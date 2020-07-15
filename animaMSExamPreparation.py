@@ -50,7 +50,7 @@ def process(reference, flair, t1, t1_gd="", t2="", outputFolder=tempfile.gettemp
 
     tmpFolder = outputFolder
 
-    brainExtractionCommand = ["python3", "animaAtlasBasedBrainExtraction.py", "-i", refImage, "-S"]
+    brainExtractionCommand = ["python3", os.path.join(os.path.dirname(__file__), "animaAtlasBasedBrainExtraction.py"), "-i", refImage, "-S"]
     call(brainExtractionCommand)
 
     # Decide on whether to use large image setting or small image setting
