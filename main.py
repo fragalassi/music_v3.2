@@ -72,7 +72,7 @@ with open(dataFile, 'r', encoding='utf-8') as f:
         for patient in json_dict[dataName]:
             
             output = patient['output']
-            if not output.startwith(outputDirectory):
+            if not output.startswith(outputDirectory):
                 output = os.path.join(outputDirectory, output)
             
             pathlib.Path(output).mkdir(parents=True, exist_ok=True) 
