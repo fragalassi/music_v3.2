@@ -3,17 +3,17 @@ from keras.models import load_model
 from CNN_training_tools.base import test_scan
 from CNN_training_tools.metrics import generalised_dice_loss, jaccard_distance_loss
 
-def music_lesion_core_processing(animaExtraDataDir,t1Image,flairImage,modelName,tmpFolder):
+def music_lesion_core_processing(animaExtraDataDir,t1Image,t2Image,flairImage,modelName,tmpFolder):
                      
     custom_objects = {'generalised_dice_loss': generalised_dice_loss, 'jaccard_distance_loss': jaccard_distance_loss}
 
     model_1 = dict()
     model_2 = dict()
 
-    model_1['net'] = load_model(os.path.join("ms_lesion_models", modelName + "_1.h5"), custom_objects=custom_objects)
-    model_2['net'] = load_model(os.path.join("ms_lesion_models", modelName + "_2.h5"), custom_objects=custom_objects)
-    model_1['net'].load_weights(os.path.join("ms_lesion_models", modelName + "_weights_1.h5"), by_name=True)
-    model_2['net'].load_weights(os.path.join("ms_lesion_models", modelName + "_weights_2.h5"), by_name=True)
+    model_1['net'] = load_model(os.path.join(animaExtraDataDir, "ms_lesion_models", modelName + "_1.h5"), custom_objects=custom_objects)
+    model_2['net'] = load_model(os.path.join(animaExtraDataDir, "ms_lesion_models", modelName + "_2.h5"), custom_objects=custom_objects)
+    model_1['net'].load_weights(os.path.join(animaExtraDataDir, "ms_lesion_models", modelName + "_weights_1.h5"), by_name=True)
+    model_2['net'].load_weights(os.path.join(animaExtraDataDir, "ms_lesion_models", modelName + "_weights_2.h5"), by_name=True)
     
     model = [model_1, model_2]
 
@@ -36,6 +36,8 @@ def music_lesion_core_processing(animaExtraDataDir,t1Image,flairImage,modelName,
     test_data = dict()
     test_data['Patient'] = dict()
     test_data['Patient']['T1'] = t1Image
+    if t2Image:
+        test_data['Patient']['T2'] = t2Image
     test_data['Patient']['FLAIR'] = flairImage
 
     # First layer of CNN

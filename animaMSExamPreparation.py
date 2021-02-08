@@ -1,17 +1,16 @@
-#!/usr/bin/python
-
 import argparse
 import sys
+import tempfile
+import os
+import shutil
+from subprocess import call, check_output
 
 if sys.version_info[0] > 2:
     import configparser as ConfParser
 else:
     import ConfigParser as ConfParser
 
-import os
-import shutil
-import tempfile
-from subprocess import call, check_output
+print('Parse ~/.anima/config.txt')
 
 configFilePath = os.path.expanduser("~") + "/.anima/config.txt"
 if not os.path.exists(configFilePath):
@@ -22,24 +21,8 @@ configParser = ConfParser.RawConfigParser()
 configParser.read(configFilePath)
 
 animaDir = configParser.get("anima-scripts", 'anima')
-animaExtraDataDir = configParser.get("anima-scripts", 'extra-data-root')
-animaScriptsDir="/udd/fgalassi/Anima-Scripts"
-
-parser = argparse.ArgumentParser(
-    prog='animaMSExamPreparation',
-    formatter_class=argparse.RawDescriptionHelpFormatter,
-    description="Registers and pre-processes input images of an MS patient sequence onto a common reference.")
-
-parser.add_argument('-r', '--reference', required=True, help='Path to the MS patient reference image (usually FLAIR at first time point)')
-parser.add_argument('-f', '--flair', required=True, help='Path to the MS patient FLAIR image to register')
-parser.add_argument('-t', '--t1', required=True, help='Path to the MS patient T1 image to register')
-parser.add_argument('-g', '--t1-gd', default="", help='Path to the MS patient T1-Gd image to register')
-parser.add_argument('-T', '--t2', default="", help='Path to the MS patient T2 image to register')
-parser.add_argument('-o','--outputFolder',required=True,help='path to output image')
-
-args = parser.parse_args()
-#tmpFolder = tempfile.mkdtemp()
-tmpFolder=args.outputFolder
+# animaExtraDataDir = configParser.get("anima-scripts", 'extra-data-root')
+# animaScriptsDir="/udd/fgalassi/Anima-Scripts"
 
 # Anima commands
 animaPyramidalBMRegistration = os.path.join(animaDir, "animaPyramidalBMRegistration")
@@ -49,63 +32,77 @@ animaN4BiasCorrection = os.path.join(animaDir, "animaN4BiasCorrection")
 animaConvertImage = os.path.join(animaDir, "animaConvertImage")
 #animaBrainExtractionScript = os.path.join(animaScriptsDir, "brain_extraction", "animaAtlasBasedBrainExtraction.py")
 
-refImage = args.reference
-listImages = [args.flair, args.t1]
-if args.t1_gd != "":
-    listImages.append(args.t1_gd)
-if args.t2 != "":
-    listImages.append(args.t2)
+def extractExtension(fileName):
+    fileNamePrefix = os.path.splitext(fileName)[0]
+    if os.path.splitext(fileName)[1] == '.gz':
+        fileNamePrefix = os.path.splitext(fileNamePrefix)[0]
+    return fileNamePrefix
+
+def process(reference, flair, t1, t1_gd="", t2="", outputFolder=tempfile.gettempdir()):
     
-brainExtractionCommand = ["python3", "animaAtlasBasedBrainExtraction.py", "-i", refImage, "-S"]
-call(brainExtractionCommand)
+    refImage = reference
 
-print('ref image', refImage)
+    images = [flair, t1]
+    if t1_gd != "":
+        images.append(t1_gd)
+    if t2 is not None and t2 != "":
+        images.append(t2)
 
-# Decide on whether to use large image setting or small image setting
-command = [animaConvertImage, "-i", refImage, "-I"]
-convert_output = check_output(command, universal_newlines=True)
-size_info = convert_output.split('\n')[1].split('[')[1].split(']')[0]
-large_image = False
-for i in range(0, 3):
-    size_tmp = int(size_info.split(', ')[i])
-    if size_tmp >= 350:
-        large_image = True
-        break
+    tmpFolder = outputFolder
 
-pyramidOptions = ["-p", "4", "-l", "1"]
-if large_image:
-    pyramidOptions = ["-p", "5", "-l", "2"]
+    brainExtractionCommand = ["python3", os.path.join(os.path.dirname(__file__), "animaAtlasBasedBrainExtraction.py"), "-i", refImage, "-S"]
+    call(brainExtractionCommand)
 
-refImagePrefix = os.path.splitext(refImage)[0]
-print(refImagePrefix)
-if os.path.splitext(refImage)[1] == '.gz':
-    refImagePrefix = os.path.splitext(refImagePrefix)[0]
+    # Decide on whether to use large image setting or small image setting
+    command = [animaConvertImage, "-i", refImage, "-I"]
+    convert_output = check_output(command, universal_newlines=True)
+    size_info = convert_output.split('\n')[1].split('[')[1].split(']')[0]
+    large_image = False
+    for i in range(0, 3):
+        size_tmp = int(size_info.split(', ')[i])
+        if size_tmp >= 350:
+            large_image = True
+            break
 
-brainMask = refImagePrefix + "_brainMask.nrrd"
+    pyramidOptions = ["-p", "4", "-l", "1"]
+    if large_image:
+        pyramidOptions = ["-p", "5", "-l", "2"]
 
-print('brain Mask', brainMask)
+    refImagePrefix = extractExtension(refImage)
 
-# Main loop
-for i in range(0, len(listImages)):
-    inputPrefix = os.path.splitext(listImages[i])[0]
-    if os.path.splitext(listImages[i])[1] == '.gz':
-        inputPrefix = os.path.splitext(inputPrefix)[0]
+    brainMask = refImagePrefix + "_brainMask.nrrd"
 
-    registeredDataFile = os.path.join(tmpFolder, "SecondImage_registered.nrrd")
-    rigidRegistrationCommand = [animaPyramidalBMRegistration, "-r", refImage, "-m", listImages[i], "-o",
-                                registeredDataFile] + pyramidOptions
-    call(rigidRegistrationCommand)
+    # Main loop
+    for image in images:
+        inputPrefix = extractExtension(image)
 
-    unbiasedSecondImage = os.path.join(tmpFolder, "SecondImage_unbiased.nrrd")
-    biasCorrectionCommand = [animaN4BiasCorrection, "-i", registeredDataFile, "-o", unbiasedSecondImage, "-B", "0.3"]
-    call(biasCorrectionCommand)
+        registeredDataFile = os.path.join(tmpFolder, "SecondImage_registered.nrrd")
+        rigidRegistrationCommand = [animaPyramidalBMRegistration, "-r", refImage, "-m", image, "-o",
+                                    registeredDataFile] + pyramidOptions
+        call(rigidRegistrationCommand)
 
-    nlmSecondImage = os.path.join(tmpFolder, "SecondImage_unbiased_nlm.nrrd")
-    nlmCommand = [animaNLMeans, "-i", unbiasedSecondImage, "-o", nlmSecondImage, "-n", "3"]
-    call(nlmCommand)
+        unbiasedSecondImage = os.path.join(tmpFolder, "SecondImage_unbiased.nrrd")
+        biasCorrectionCommand = [animaN4BiasCorrection, "-i", registeredDataFile, "-o", unbiasedSecondImage, "-B", "0.3"]
+        call(biasCorrectionCommand)
 
-    outputPreprocessedFile = inputPrefix + "_preprocessed.nrrd"
-    secondMaskCommand = [animaMaskImage, "-i", nlmSecondImage, "-m", brainMask, "-o", outputPreprocessedFile]
-    call(secondMaskCommand)
+        # nlmSecondImage = os.path.join(tmpFolder, "SecondImage_unbiased_nlm.nrrd")
+        # nlmCommand = [animaNLMeans, "-i", unbiasedSecondImage, "-o", nlmSecondImage, "-n", "3"]
+        # call(nlmCommand)
 
-#shutil.rmtree(tmpFolder)
+        outputPreprocessedFile = os.path.join(tmpFolder, inputPrefix + "_preprocessed.nrrd")
+        # secondMaskCommand = [animaMaskImage, "-i", nlmSecondImage, "-m", brainMask, "-o", outputPreprocessedFile]
+        secondMaskCommand = [animaMaskImage, "-i", unbiasedSecondImage, "-m", brainMask, "-o", outputPreprocessedFile]
+        call(secondMaskCommand)
+
+    for image in images:
+        inputPrefix = extractExtension(image)
+        
+        tempFileNames = ['_aff.nrrd', '_aff_tr.txt', '_brainMask.nrrd', '_masked.nrrd', '_nl.nrrd', '_nl_tr.nrrd', '_nl_tr.xml', '_preprocessed.nrrd', '_rig.nrrd', '_rig_tr.txt', '_rough_brainMask.nrrd', '_rough_masked.nrrd']
+        for tempFileName in tempFileNames:
+            if os.path.isfile(inputPrefix + tempFileName):
+                shutil.move(inputPrefix + tempFileName, os.path.join(tmpFolder, os.path.basename(inputPrefix + tempFileName)))
+    
+    if os.path.isfile(brainMask) and not os.path.exists(os.path.join(tmpFolder, brainMask)):
+        shutil.move(brainMask, tmpFolder)
+
+    #shutil.rmtree(tmpFolder)
